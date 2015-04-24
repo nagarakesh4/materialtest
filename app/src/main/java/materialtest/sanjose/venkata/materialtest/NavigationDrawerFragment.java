@@ -87,7 +87,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
                 getActivity().invalidateOptionsMenu();
             }
             // for 3 type of drawer (alpha less for tool bar)
-            @Override
+            /*@Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 //super.onDrawerSlide(drawerView, slideOffset);
                 //the offset increases from 0 to 1 as the drawer is opened based on slideOffset
@@ -95,7 +95,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
                 if(slideOffset<0.6) {
                     toolbar.setAlpha(1 - slideOffset);
                 }
-            }
+            }*/
         };
         // the very first time
         if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
