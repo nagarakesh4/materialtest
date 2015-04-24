@@ -22,11 +22,11 @@ public class MainActivity extends ActionBarActivity {
         toolbar = (Toolbar) findViewById(R.id.appBar);
         //telling to use my own action bar
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         //send tool bar, icon changes and everything from here
-        navigationDrawerFragment.setUp((android.support.v4.widget.DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
+        navigationDrawerFragment.setUp(R.id.fragment_navigation_drawer, (android.support.v4.widget.DrawerLayout) findViewById(R.id.drawerLayout), toolbar);
     }
 
 
