@@ -24,7 +24,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
-
+        Log.i("","");
     }
 
 
