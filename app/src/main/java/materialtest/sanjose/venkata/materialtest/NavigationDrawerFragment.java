@@ -79,13 +79,18 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
         // but not dynamic content
         List<InformationRow> dataInformation = new ArrayList<>();
         int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3,
-                R.drawable.ic_number4};
-        String[] titles = {"Venkata", "Adobe", "SJSU", "India"};
+                R.drawable.ic_number4, R.drawable.ic_next, R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3,
+                R.drawable.ic_number4, R.drawable.ic_next, R.drawable.ic_number2};
+        String[] titles = {"Venkata", "Adobe", "SJSU", "India", "San Jose", "Visakhapatnam", "Google",
+        "Yahoo", "eBay", "Apple", "PayPal"};
 
-        for(int i=0;i<titles.length && i<icons.length; i++) {
+        /*for(int i=0;i<titles.length && i<icons.length; i++) {*/
+        for(int i=0; i<100; i++){
             InformationRow currentInformation = new InformationRow();
-            currentInformation.iconId = icons[i];
-            currentInformation.title = titles[i];
+            //currentInformation.iconId = icons[i];
+            currentInformation.iconId = icons[i%icons.length];
+            //currentInformation.title = titles[i];
+            currentInformation.title = titles[i%icons.length];
             dataInformation.add(currentInformation);
         }
         return dataInformation;
