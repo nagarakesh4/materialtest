@@ -1,20 +1,39 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<!--<org.lucasr.dspec.DesignSpecFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DADADA"
-    tools:context="materialtest.sanjose.venkata.materialtest.NavigationDrawerFragment">
+    app:designSpec="@raw/spec">-->
 
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FB8C00">
-    <ImageView
-        android:layout_width="280dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="@dimen/drawer_margin_top"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_abstract" />
-    </LinearLayout>
-</FrameLayout>
+        android:layout_height="match_parent"
+        android:background="#DADADA"
+        tools:context="materialtest.sanjose.venkata.materialtest.NavigationDrawerFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:id="@+id/containerDrawerImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FB8C00">
+
+            <ImageView
+                android:layout_width="280dp"
+                android:layout_height="140dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="@dimen/drawer_margin_top"
+                android:src="@drawable/ic_abstract" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/drawerList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/containerDrawerImage">
+
+        </android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+<!--
+</org.lucasr.dspec.DesignSpecFrameLayout>-->

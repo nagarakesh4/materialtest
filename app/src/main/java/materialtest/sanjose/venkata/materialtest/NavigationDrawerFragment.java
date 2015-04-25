@@ -7,11 +7,16 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -19,6 +24,7 @@ import android.view.ViewGroup;
  */
 public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
 
+    private RecyclerView recyclerView;
     public static final String PREF_FILE_NAME = "testpref";
     //create a key for mUserLearnedDrawer
     public static final String KEY_USER_LEARNED_DRAWER = "user_learned_drawer";
@@ -26,6 +32,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
 
+    private InformationAdapter informationAdapter;
 
     //when the drawer is opened, we will store the muserlearneddrawer in sharedpreference
     //when the screen is rotated and the drawer is drawn then we don't want the state to persis instead we want to check for this
@@ -44,7 +51,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
         // false => ensure that if nothing available means the user has never opened the drawer
         mUserLearnedDrawer = Boolean.valueOf(readFromPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, "false"));
         // if coming from screen rotation then a value is stored in shared preference then we should hide the drawer
-        if(savedInstanceState!=null){
+        if (savedInstanceState != null) {
             mFromSavedInstanceState = true;
         }
     }
@@ -53,9 +60,36 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        //recyclerview implementation
+        recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
+
+        //initialise the information adapter with the data from getData() - static
+        informationAdapter = new InformationAdapter(getActivity(), getData());
+        //set the adapter on the recycler view
+        recyclerView.setAdapter(informationAdapter);
+        //set the layout manager
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        return layout;
     }
 
+    public static List<InformationRow> getData() {
+        // load dummy data as the navigation drawer recommends only static data
+        // but not dynamic content
+        List<InformationRow> dataInformation = new ArrayList<>();
+        int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3,
+                R.drawable.ic_number4};
+        String[] titles = {"Venkata", "Adobe", "SJSU", "India"};
+
+        for(int i=0;i<titles.length && i<icons.length; i++) {
+            InformationRow currentInformation = new InformationRow();
+            currentInformation.iconId = icons[i];
+            currentInformation.title = titles[i];
+            dataInformation.add(currentInformation);
+        }
+        return dataInformation;
+    }
 
     public void setUp(int FragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
         //read the fragment id that is being sent as this is being used further while trying to auto open the drawer on

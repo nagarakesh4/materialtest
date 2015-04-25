@@ -9,7 +9,9 @@ import android.view.MenuItem;
 
 
 public class SubActivity extends ActionBarActivity {
-
+    /*
+    * This is the second page after main activity class
+    * */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +43,7 @@ public class SubActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
+        // on the options menu we now have
         if(id == R.id.home){
             NavUtils.navigateUpFromSameTask(this);
         }
