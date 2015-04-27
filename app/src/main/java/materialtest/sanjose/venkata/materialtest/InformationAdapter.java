@@ -55,7 +55,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         // here we set the data that should correspond to the current row that should be displayed
         // in recycler view
         // we can cache this easily by avoiding findViewById
@@ -70,14 +70,21 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         holder.title.setText(currentData.title);
         holder.icon.setImageResource(currentData.iconId);
         // use getPosition() only inside this method, outside it may change
+        holder.title.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Log.i("clicked on title", "testing");
+                Toast.makeText(context, "Item Clicked at " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
         /*holder.icon.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Item Clicked at " + position, Toast.LENGTH_SHORT).show();
+                delete(position);
             }
         });*/
-
     }
     /*
     * this is for returning the number of total items list
@@ -87,6 +94,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         return dataInformation.size();
     }
 
+    /*we have to create our custom view holder for setting objects*/
     class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         TextView title;
         ImageView icon;
@@ -96,6 +104,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             icon = (ImageView) itemView.findViewById(R.id.listIcon);
             // on click of this item icon
             icon.setOnClickListener(this);
+            //title.setOnClickListener(this);
         }
 
         @Override
@@ -103,6 +112,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
             //Toast.makeText(context, "Item clicked at "+getPosition(), Toast.LENGTH_SHORT).show();
 
             //delete that particular item
+            Log.i("View is viewerd", String.valueOf(v));
             delete(getPosition());
         }
     }

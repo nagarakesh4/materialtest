@@ -9,9 +9,11 @@
     android:layout_height="wrap_content"
     android:src="@drawable/ic_number1"
     android:layout_centerVertical="true"
-    android:id="@+id/listIcon"/>
+    android:id="@+id/listIcon"
+    />
 
     <TextView
+        android:textColor="#4d4d4d"
         android:layout_marginLeft="72dp"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
