@@ -2,15 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#9e9e9e"
     tools:context="materialtest.sanjose.venkata.materialtest.SubActivity">
     <include layout="@layout/app_bar" android:id="@+id/appBar">
 
     </include>
-    <TextView
-        android:layout_below="@+id/appBar"
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="My View"
+        android:id="@+id/button"
+        android:layout_below="@+id/appBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="172dp"
+        android:background="@color/icons"
+        android:textColor="#000"
+        android:padding="25dp"/>
+
 
 </RelativeLayout>

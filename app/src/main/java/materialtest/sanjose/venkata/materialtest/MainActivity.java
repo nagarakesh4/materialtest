@@ -23,6 +23,8 @@ public class MainActivity extends ActionBarActivity {
         //telling to use my own action bar
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // implement the navigation drawer fragment in the mainactivity page
         NavigationDrawerFragment navigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         //send tool bar, icon changes and everything from here

@@ -1,3 +1,4 @@
+// type 1 and 2 for starting an activity from navigationdrawer
 package materialtest.sanjose.venkata.materialtest;
 
 import android.content.Context;
@@ -25,6 +26,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     //create many information objects
     List<InformationRow> dataInformation = Collections.emptyList();
     private Context context;
+    private ClickListener clickListener;
 
     public InformationAdapter(Context context, List<InformationRow> dataInformation) {
         this.context = context;
@@ -71,6 +73,27 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         Log.i("Venkata", "On Bind View Holder at "+position);
         holder.title.setText(currentData.title);
         holder.icon.setImageResource(currentData.iconId);
+        // use getPosition() only inside this method, outside it may change
+        holder.title.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Log.i("clicked on title", "testing");
+                Toast.makeText(context, "Item Clicked at " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+        /*holder.icon.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                delete(position);
+            }
+        });*/
+    }
+
+    //as the navigrationdrawerfragment uses this information adapter class, we need to initialize
+    public void setClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
     }
     /*
     * this is for returning the number of total items list
@@ -81,13 +104,46 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     }
 
     /*we have to create our custom view holder for setting objects*/
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class MyViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         TextView title;
         ImageView icon;
         public MyViewHolder(View itemView) {
             super(itemView);
+            // perform an item on the entire click of the row, on click will call the onClick()
+            itemView.setOnClickListener(this);
+
             title = (TextView) itemView.findViewById(R.id.listText);
             icon = (ImageView) itemView.findViewById(R.id.listIcon);
+            // on click of this item icon
+            //icon.setOnClickListener(this);
+            //title.setOnClickListener(this);
         }
+
+        /*@Override
+        public void onClick(View v) {
+            //Toast.makeText(context, "Item clicked at "+getPosition(), Toast.LENGTH_SHORT).show();
+
+            //delete that particular item
+            Log.i("View is viewerd", String.valueOf(v));
+            delete(getPosition());
+        }*/
+
+        @Override
+        public void onClick(View v) {
+            // we can just write the below code and thus remove the setClickListener and stuff
+            // but this is not preferred so we call the startactivity from a new method
+            //context.startActivity(new Intent(context, SubActivity.class));
+
+            //check if the method is called or not, if yes then call the click listener method
+            //if the user doesn't call the adapter.setclicklistener then variable will be null
+            if(clickListener!=null){
+                clickListener.itemClicked(v, getPosition());
+            }
+        }
+    }
+    public interface ClickListener{
+        // the view that is clicked and the position at which the view was clicked
+        // we don't want to implement the start activity () from adapter - bad practice
+        public void itemClicked(View view, int position);
     }
 }
