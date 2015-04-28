@@ -206,7 +206,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment{
                 }
             });
         }
-
+        // single touch is taken care by the onintercepttouch event
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
             View child = rv.findChildViewUnder(e.getX(), e.getY());
