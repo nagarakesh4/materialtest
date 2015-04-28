@@ -1,6 +1,7 @@
 package materialtest.sanjose.venkata.materialtest;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +50,17 @@ public class MainActivity extends ActionBarActivity {
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        mTabs.setCustomTabView(R.layout.custom_tab_view, R.id.tabText);
+        mTabs.setDistributeEvenly(true);//all the three tabs take equal space
+        mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.accent);
+            }
+        });
         mTabs.setViewPager(mPager);
+
+
     }
 
 
@@ -78,9 +92,13 @@ public class MainActivity extends ActionBarActivity {
     // the view pager should be constructed having several fragments using adapter
     class MyPagerAdapter extends FragmentPagerAdapter{
         String[] tabs;
+
+        int icons[] = {R.drawable.ic_action_home, R.drawable.ic_action_articles, R.drawable.ic_action_personal};
+        String[] tabText = getResources().getStringArray(R.array.tabs);
+
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
-            tabs = getResources().getStringArray(R.array.tabs);
+            tabText = getResources().getStringArray(R.array.tabs);
         }
 
         @Override
@@ -91,7 +109,17 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return tabs[position];
+            // use spannable to display text and icon
+            // construct an icon from the position
+            Drawable drawable = getResources().getDrawable(icons[position]);
+            drawable.setBounds(0,0,36,36);
+            //image span object from the drawable
+            ImageSpan imageSpan = new ImageSpan(drawable);
+            //spannable string class
+            SpannableString spannableString = new SpannableString(" ");//to make the icons work
+            spannableString.setSpan(imageSpan, 0, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE );
+
+            return spannableString;
         }
 
         @Override
