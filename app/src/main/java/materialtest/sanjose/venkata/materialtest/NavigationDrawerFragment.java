@@ -89,12 +89,12 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment{
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Toast.makeText(getActivity(), "onClick "+position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "onClick "+position, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onLongClick(View view, int position) {
-                Toast.makeText(getActivity(), "onlongClick "+position, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "onlongClick "+position, Toast.LENGTH_SHORT).show();
             }
         }));
             return layout;
