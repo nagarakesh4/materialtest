@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -81,7 +82,25 @@ public class MainActivity extends ActionBarActivity {
             return true;
         }
         if (id == R.id.navigate) {
+            Log.i("sending mail", "now sending");
             startActivity(new Intent(this, SubActivity.class));
+            /*Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("message/rfc822");
+            i.putExtra(Intent.EXTRA_EMAIL, new String[]{"nagarakesh4@gmail.com"});
+            i.putExtra(Intent.EXTRA_SUBJECT, "subject of email");
+            i.putExtra(Intent.EXTRA_TEXT, "body of email");
+            try {
+                Log.i("sending mail", Intent.EXTRA_EMAIL+"");
+                startActivity(Intent.createChooser(i, "Send mail..."));
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+            }*/
+        }
+        if(id == R.id.action_about) {
+            Log.i("hey wow man,", "you want to know about of this?");
+        }
+        if(id == R.id.useTabLibrary) {
+            startActivity(new Intent(this, UsingTabLibrary.class));
         }
         return super.onOptionsItemSelected(item);
     }
@@ -125,29 +144,5 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public static class MyFragment extends Fragment{
-        private TextView textView;
 
-        public static MyFragment getInstance(int position){
-            MyFragment myFragment = new MyFragment();
-            Bundle args = new Bundle();
-            args.putInt("position", position);
-            myFragment.setArguments(args);
-
-            return myFragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View layout = inflater.inflate(R.layout.fragment_my, container, false);
-            textView = (TextView) layout.findViewById(R.id.position);
-
-            Bundle bundle = getArguments();
-            if(bundle!=null){
-                textView.setText("The Page selected is " +bundle.getInt("position"));
-            }
-
-            return layout;
-        }
-    }
 }
