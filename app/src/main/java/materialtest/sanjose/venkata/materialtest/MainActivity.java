@@ -99,7 +99,7 @@ public class MainActivity extends ActionBarActivity {
         if(id == R.id.action_about) {
             Log.i("hey wow man,", "you want to know about of this?");
         }
-        if(id == R.id.useTabLibrary) {
+        if(id == R.id.materialTab) {
             startActivity(new Intent(this, UsingTabLibrary.class));
         }
         return super.onOptionsItemSelected(item);

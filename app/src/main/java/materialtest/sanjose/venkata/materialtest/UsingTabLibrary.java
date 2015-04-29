@@ -4,10 +4,12 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +21,6 @@ import it.neokree.materialtabs.MaterialTabListener;
 
 public class UsingTabLibrary extends ActionBarActivity implements MaterialTabListener{
 
-    private Toolbar toolbar;
     private MaterialTabHost tabHost;
     private ViewPager viewPager;
 
@@ -27,9 +28,13 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_using_tab_library);
-        toolbar = (Toolbar) findViewById(R.id.appBar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.appBar);
+
         //telling to use my own action bar
         setSupportActionBar(toolbar);
+        // go back page if click on arrow
+        getSupportActionBar().setHomeButtonEnabled(true);
+        // display back button (arrow)
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
@@ -52,7 +57,7 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
                             //uncomment below if want to use icons as tab layout
                             //.setIcon(adapter.getIcon(i))
                             //the below takes from the get page title beneath
-                            .setText(adapter.getPageTitle(i))
+                            .setIcon(adapter.getIcon(i))
                                     // the this below refers to materialtablistener
                             .setTabListener(this)
             );
@@ -63,7 +68,8 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_using_tab_library, menu);
+        //getMenuInflater().inflate(R.menu.menu_using_tab_library, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -77,6 +83,12 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        // on the options menu we now have
+        if(id == R.id.home) {
+            Log.i("clicked on home", "yes just now");
+            NavUtils.navigateUpFromSameTask(UsingTabLibrary.this);
         }
 
         return super.onOptionsItemSelected(item);
@@ -101,11 +113,11 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
     private class ViewPageAdapter extends FragmentStatePagerAdapter{
 
         //uncomment below when want to use icons for tablayout
-        /*int icons[] = {R.drawable.ic_action_home, R.drawable.ic_action_articles, R.drawable.ic_action_personal,
-                R.drawable.ic_action_calendar, R.drawable.ic_action_important,
+        int icons[] = {R.drawable.ic_action_personal, R.drawable.ic_action_calendar,
+                R.drawable.ic_action_important, R.drawable.ic_action_trending_orange,
+                R.drawable.ic_action_home, R.drawable.ic_action_articles,
                 R.drawable.ic_action_search, R.drawable.ic_action_trending_orange,
                 R.drawable.ic_action_upcoming, R.drawable.ic_action_trending};
-*/
 
         public ViewPageAdapter(FragmentManager fm) {
             super(fm);
@@ -119,14 +131,18 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
         public int getCount() {
             return 3;
         }
+
+        // now write own implementation for setting text tab headers or icon tab headers
+
         // uncomment below for having text as tab heading
-        @Override
+        /*@Override
         public CharSequence getPageTitle(int position) {
             return getResources().getStringArray(R.array.tabs)[position];
-        }
-        // uncomment below for having icons as tab heading
-        /*private Drawable getIcon(int position) {
-            return getResources().getDrawable(icons[position]);
         }*/
+
+        // uncomment below for having icons as tab heading
+        private Drawable getIcon(int position) {
+            return getResources().getDrawable(icons[position]);
+        }
     }
 }

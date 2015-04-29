@@ -19,8 +19,8 @@
         app:showAsAction="never"
         android:title="About"/>
     <item
-        android:id="@+id/useTabLibrary"
+        android:id="@+id/materialTab"
         android:orderInCategory="400"
         app:showAsAction="never"
-        android:title="Exit"/>
+        android:title="Material Tabs"/>
 </menu>

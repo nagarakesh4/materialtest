@@ -1,9 +1,11 @@
 package materialtest.sanjose.venkata.materialtest;
 
+import android.content.Intent;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,10 +19,12 @@ public class SubActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
         Toolbar toolbar = (Toolbar) findViewById(R.id.appBar);
+
         //telling to use my own action bar
         setSupportActionBar(toolbar);
-
+        // go back page if click on arrow
         getSupportActionBar().setHomeButtonEnabled(true);
+        // display back button (arrow)
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -28,7 +32,8 @@ public class SubActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_sub, menu);
+        //getMenuInflater().inflate(R.menu.menu_sub, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -41,13 +46,17 @@ public class SubActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Log.i("clicked on home", "yes just now");
             return true;
         }
         // on the options menu we now have
         if(id == R.id.home){
-            NavUtils.navigateUpFromSameTask(this);
+            Log.i("clicked on home", "yes just now");
+            NavUtils.navigateUpFromSameTask(SubActivity.this);
         }
-
+        if(id == R.id.materialTab) {
+            startActivity(new Intent(this, UsingTabLibrary.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 }
