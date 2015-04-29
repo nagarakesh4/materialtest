@@ -16,10 +16,21 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/appBar"
+        app:textColor="@android:color/white"
+        app:accentColor="@color/accent"
+        app:primaryColor="@color/primary"/>
+
+    <!-- for Icon Tabs -->
+    <!-- <it.neokree.materialtabs.MaterialTabHost
+        android:id="@+id/materialTabHost"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/appBar"
         app:iconColor="@android:color/white"
         app:accentColor="@color/accent"
         app:primaryColor="@color/primary"
-        app:hasIcons="true"/>
+        app:hasIcons="true"/> -->
+
     <!--this view pager is for the corresponding view of each tab!-->
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

@@ -49,8 +49,10 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
         for (int i = 0; i < adapter.getCount(); i++) {
             tabHost.addTab(
                     tabHost.newTab()
+                            //uncomment below if want to use icons as tab layout
+                            //.setIcon(adapter.getIcon(i))
                             //the below takes from the get page title beneath
-                            .setIcon(adapter.getIcon(i))
+                            .setText(adapter.getPageTitle(i))
                                     // the this below refers to materialtablistener
                             .setTabListener(this)
             );
@@ -98,11 +100,12 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
 
     private class ViewPageAdapter extends FragmentStatePagerAdapter{
 
-        int icons[] = {R.drawable.ic_action_home, R.drawable.ic_action_articles, R.drawable.ic_action_personal,
-        R.drawable.ic_action_calendar, R.drawable.ic_action_important,
-        R.drawable.ic_action_search, R.drawable.ic_action_trending_orange,
-        R.drawable.ic_action_upcoming, R.drawable.ic_action_trending};
-
+        //uncomment below when want to use icons for tablayout
+        /*int icons[] = {R.drawable.ic_action_home, R.drawable.ic_action_articles, R.drawable.ic_action_personal,
+                R.drawable.ic_action_calendar, R.drawable.ic_action_important,
+                R.drawable.ic_action_search, R.drawable.ic_action_trending_orange,
+                R.drawable.ic_action_upcoming, R.drawable.ic_action_trending};
+*/
 
         public ViewPageAdapter(FragmentManager fm) {
             super(fm);
@@ -114,16 +117,16 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
 
         @Override
         public int getCount() {
-            return 9;
+            return 3;
         }
-
-        /*@Override
+        // uncomment below for having text as tab heading
+        @Override
         public CharSequence getPageTitle(int position) {
             return getResources().getStringArray(R.array.tabs)[position];
-        }*/
-
-        private Drawable getIcon(int position) {
-            return getResources().getDrawable(icons[position]);
         }
+        // uncomment below for having icons as tab heading
+        /*private Drawable getIcon(int position) {
+            return getResources().getDrawable(icons[position]);
+        }*/
     }
 }
