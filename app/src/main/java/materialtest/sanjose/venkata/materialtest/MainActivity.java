@@ -52,12 +52,9 @@ public class MainActivity extends ActionBarActivity {
         mTabs = (SlidingTabLayout) findViewById(R.id.tabs);
         mTabs.setCustomTabView(R.layout.custom_tab_view, R.id.tabText);
         mTabs.setDistributeEvenly(true);//all the three tabs take equal space
-        mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
-            @Override
-            public int getIndicatorColor(int position) {
-                return getResources().getColor(R.color.accent);
-            }
-        });
+
+        mTabs.setBackgroundColor(getResources().getColor(R.color.icons));
+        mTabs.setSelectedIndicatorColors(getResources().getColor(R.color.accent));
         mTabs.setViewPager(mPager);
 
 

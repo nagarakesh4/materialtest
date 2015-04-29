@@ -3,7 +3,7 @@
     android:color="?android:attr/colorControlHighlight">
     <item android:id="@+id/mask"
         android:drawable="@android:color/white"></item>
-    <item android:state_pressed="true">
+    <!--<item android:state_pressed="true">
         <shape>
             <solid android:color="@color/colorHighlight"></solid>
         </shape>
@@ -12,5 +12,5 @@
         <shape>
             <solid android:color="@color/primary"></solid>
         </shape>
-    </item>
+    </item>-->
 </ripple>

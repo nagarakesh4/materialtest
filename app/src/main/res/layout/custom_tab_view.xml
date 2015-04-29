@@ -9,7 +9,8 @@
         android:id="@+id/tabImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:background="@android:color/white"/>
 
     <TextView
         android:id="@+id/tabText"
