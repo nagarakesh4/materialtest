@@ -1,5 +1,6 @@
 package materialtest.sanjose.venkata.materialtest;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -69,7 +71,7 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_using_tab_library, menu);
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_using_tab_library, menu);
         return true;
     }
 
@@ -82,13 +84,25 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast.makeText(this, "Hey you just hit " + item.getTitle(), Toast.LENGTH_SHORT).show();
             return true;
         }
 
+        if (id == R.id.navigate) {
+            startActivity(new Intent(this, SubActivity.class));
+        }
+
+        if(id == R.id.action_about) {
+            Log.i("hey wow man,", "you want to know about of this?");
+        }
+
+        if(id == R.id.materialTab) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
         // on the options menu we now have
         if(id == R.id.home) {
-            Log.i("clicked on home", "yes just now");
-            NavUtils.navigateUpFromSameTask(UsingTabLibrary.this);
+            Log.i("this is where&&", "correct");
+            NavUtils.navigateUpFromSameTask(this);
         }
 
         return super.onOptionsItemSelected(item);

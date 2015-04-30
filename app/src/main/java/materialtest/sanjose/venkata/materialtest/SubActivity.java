@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 public class SubActivity extends ActionBarActivity {
@@ -33,7 +34,7 @@ public class SubActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_sub, menu);
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_sub, menu);
         return true;
     }
 
@@ -46,17 +47,27 @@ public class SubActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Log.i("clicked on home", "yes just now");
+            Toast.makeText(this, "Hey you just hit " + item.getTitle(), Toast.LENGTH_SHORT).show();
             return true;
         }
-        // on the options menu we now have
-        if(id == R.id.home){
-            Log.i("clicked on home", "yes just now");
-            NavUtils.navigateUpFromSameTask(SubActivity.this);
+
+        if (id == R.id.navigate) {
+            startActivity(new Intent(this, UsingTabLibrary.class));
         }
+
+        if(id == R.id.action_about) {
+            Log.i("hey wow man,", "you want to know about of this?");
+        }
+
         if(id == R.id.materialTab) {
             startActivity(new Intent(this, UsingTabLibrary.class));
         }
+        // on the options menu we now have
+        if(id == R.id.home) {
+            Log.i("this is where=", "correct");
+            NavUtils.navigateUpFromSameTask(getParent());
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }
