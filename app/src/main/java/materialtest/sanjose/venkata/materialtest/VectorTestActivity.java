@@ -1,5 +1,7 @@
 package materialtest.sanjose.venkata.materialtest;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
@@ -16,6 +18,9 @@ public class VectorTestActivity extends ActionBarActivity {
 
     Toolbar toolbar;
     ImageView imageView;
+
+    //for setBackground
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +32,31 @@ public class VectorTestActivity extends ActionBarActivity {
 
         imageView = (ImageView) findViewById(R.id.vectorImage);
         //Mr.Vector code to inject vector image
-        Drawable drawable = MrVector.inflate(getResources(), R.drawable.vector_android);
+        Drawable drawable = null;
+
+        //animated vector versions only work for greater than lollipop
+        if(Util.greaterThanOrEqualToLollipop()) {
+            drawable = MrVector.inflate(getResources(), R.drawable.animator_vector_clock);
+        }else{
+            drawable = MrVector.inflate(getResources(), R.drawable.vector_clock);
+        }
+
         //check the build version
-        if(Build.VERSION.SDK_INT >= 16){
+        /*if(Build.VERSION.SDK_INT >= 16){
             imageView.setBackground(drawable);
         }else {
             imageView.setBackgroundDrawable(drawable);
+        }*/
+        //set what ever drawable is taken from the above lollipop or not condition and set as
+        //background
+        if(Util.greaterThanOrEqualToJellyBean()){
+            imageView.setBackground(drawable);
+        }else{
+            imageView.setBackgroundDrawable(drawable);
+        }
+
+        if(drawable instanceof Animatable) {
+            ((Animatable) drawable).start();
         }
     }
 
