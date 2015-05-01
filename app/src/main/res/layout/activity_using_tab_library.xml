@@ -28,7 +28,8 @@
         android:layout_below="@id/appBar"
         app:accentColor="@color/accent"
         app:primaryColor="@color/primary"
-        app:hasIcons="true"/>
+        app:hasIcons="true"
+        app:iconColor="#cc44ff"/>
     <!--app:iconColor="@android:color/white"-->
 
     <!--this view pager is for the corresponding view of each tab!-->

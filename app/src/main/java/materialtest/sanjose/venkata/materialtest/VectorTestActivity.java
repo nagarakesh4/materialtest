@@ -1,11 +1,15 @@
 package materialtest.sanjose.venkata.materialtest;
 
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import com.telly.mrvector.MrVector;
 
 
 public class VectorTestActivity extends ActionBarActivity {
@@ -22,7 +26,14 @@ public class VectorTestActivity extends ActionBarActivity {
         setSupportActionBar(toolbar);
 
         imageView = (ImageView) findViewById(R.id.vectorImage);
-
+        //Mr.Vector code to inject vector image
+        Drawable drawable = MrVector.inflate(getResources(), R.drawable.vector_android);
+        //check the build version
+        if(Build.VERSION.SDK_INT >= 16){
+            imageView.setBackground(drawable);
+        }else {
+            imageView.setBackgroundDrawable(drawable);
+        }
     }
 
 
