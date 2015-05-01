@@ -1,8 +1,7 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -17,10 +16,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import materialtest.sanjose.venkata.adapters.InformationAdapter;
+import materialtest.sanjose.venkata.materialtest.R;
+import materialtest.sanjose.venkata.model.InformationRowModel;
 
 
 /**
@@ -100,10 +102,10 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment{
             return layout;
     }
 
-    public static List<InformationRow> getData() {
+    public static List<InformationRowModel> getData() {
         // load dummy data as the navigation drawer recommends only static data
         // but not dynamic content
-        List<InformationRow> dataInformation = new ArrayList<>();
+        List<InformationRowModel> dataInformation = new ArrayList<>();
         int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3,
                 R.drawable.ic_number4, R.drawable.ic_next, R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3,
                 R.drawable.ic_number4, R.drawable.ic_next, R.drawable.ic_number2};
@@ -112,7 +114,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment{
 
         /*for(int i=0;i<titles.length && i<icons.length; i++) {*/
         for(int i=0; i<100; i++){
-            InformationRow currentInformation = new InformationRow();
+            InformationRowModel currentInformation = new InformationRowModel();
             //currentInformation.iconId = icons[i];
             currentInformation.iconId = icons[i%icons.length];
             //currentInformation.title = titles[i];

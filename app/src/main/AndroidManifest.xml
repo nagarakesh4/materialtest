@@ -7,13 +7,13 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".ApplicationInstance"
+        android:name="materialtest.sanjose.venkata.instance.ApplicationInstance"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="materialtest.sanjose.venkata.activities.MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,19 +22,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SubActivity"
+            android:name="materialtest.sanjose.venkata.activities.SubActivity"
             android:label="@string/title_activity_sub" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="materialtest.sanjose.venkata.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".UsingTabLibrary"
+            android:name="materialtest.sanjose.venkata.activities.UsingTabLibrary"
             android:label="@string/title_activity_using_tab_library" >
         </activity>
         <activity
-            android:name=".VectorTestActivity"
+            android:name="materialtest.sanjose.venkata.activities.VectorTestActivity"
             android:label="@string/title_activity_vector_test" >
+        </activity>
+        <activity
+            android:name="materialtest.sanjose.venkata.activities.MovieTabActivity"
+            android:label="@string/title_activity_movie_tab" >
         </activity>
     </application>
 

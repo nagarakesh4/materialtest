@@ -1,22 +1,20 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
+import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.network.VolleySingleton;
 
 /**

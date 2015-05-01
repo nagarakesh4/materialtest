@@ -25,4 +25,6 @@
     </string-array>
     <string name="title_activity_using_tab_library">UsingTabLibrary</string>
     <string name="title_activity_vector_test">VectorTestActivity</string>
+    <!--<string name="title_activity_movie_tab">MovieTabActivity</string>-->
+    <string name="title_activity_movie_tab">Welcome to the World of Movies</string>
 </resources>

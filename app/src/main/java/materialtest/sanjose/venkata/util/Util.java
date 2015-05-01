@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.util;
 
 import android.os.Build;
 

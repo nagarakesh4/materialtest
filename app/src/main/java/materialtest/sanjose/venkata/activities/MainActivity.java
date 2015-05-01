@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -16,8 +16,10 @@ import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import materialtest.sanjose.venkata.fragments.MyFragment;
+import materialtest.sanjose.venkata.fragments.NavigationDrawerFragment;
+import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.tabs.SlidingTabLayout;
 
 
@@ -74,13 +76,13 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.navigate) {
+        /*if (id == R.id.navigate) {
             Toast.makeText(this, "Hey you just hit " + item.getTitle(), Toast.LENGTH_SHORT).show();
             return true;
-        }
+        }*/
         if (id == R.id.navigate) {
             Log.i("sending mail", "now sending");
-            startActivity(new Intent(this, SubActivity.class));
+            startActivity(new Intent(this, MovieTabActivity.class));
             /*Intent i = new Intent(Intent.ACTION_SEND);
             i.setType("message/rfc822");
             i.putExtra(Intent.EXTRA_EMAIL, new String[]{"nagarakesh4@gmail.com"});

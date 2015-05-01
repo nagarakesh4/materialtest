@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.activities;
 
 import android.content.Intent;
 import android.support.v4.app.NavUtils;
@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import materialtest.sanjose.venkata.materialtest.R;
 
 
 public class SubActivity extends ActionBarActivity {

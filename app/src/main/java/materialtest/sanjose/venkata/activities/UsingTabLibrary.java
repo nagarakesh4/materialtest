@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -13,12 +13,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
+import materialtest.sanjose.venkata.fragments.MyFragment;
+import materialtest.sanjose.venkata.materialtest.R;
 
 
 public class UsingTabLibrary extends ActionBarActivity implements MaterialTabListener{
@@ -133,7 +134,7 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
                 R.drawable.ic_action_search, R.drawable.ic_action_trending_orange,
                 R.drawable.ic_action_upcoming, R.drawable.ic_action_trending};*/
 
-        //android svg items
+        //uncomment below for android svg items
         int icons[] = {R.drawable.vector_android, R.drawable.vector_android,
                 R.drawable.vector_android};
 

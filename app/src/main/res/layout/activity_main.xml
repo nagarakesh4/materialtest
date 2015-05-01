@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="materialtest.sanjose.venkata.materialtest.MainActivity">
+        tools:context="materialtest.sanjose.venkata.activities.MainActivity">
 
         <!-- include our own tool bar -->
         <include
@@ -32,7 +32,7 @@
     <!--only when drawn-->
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="materialtest.sanjose.venkata.materialtest.NavigationDrawerFragment"
+        android:name="materialtest.sanjose.venkata.fragments.NavigationDrawerFragment"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

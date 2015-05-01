@@ -1,7 +1,6 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
+
+import materialtest.sanjose.venkata.materialtest.R;
+import materialtest.sanjose.venkata.model.InformationRowModel;
 
 /**
  * Created by buddhira on 4/24/2015.
@@ -23,10 +24,10 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     private LayoutInflater inflater;
 
     //create many information objects
-    List<InformationRow> dataInformation = Collections.emptyList();
+    List<InformationRowModel> dataInformation = Collections.emptyList();
     private Context context;
 
-    public InformationAdapter(Context context, List<InformationRow> dataInformation) {
+    public InformationAdapter(Context context, List<InformationRowModel> dataInformation) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.dataInformation = dataInformation;
@@ -67,7 +68,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         // updates the contents of the itemview
 
         //get the current data from the whole array list
-        InformationRow currentData = dataInformation.get(position);
+        InformationRowModel currentData = dataInformation.get(position);
         Log.i("Venkata", "On Bind View Holder at "+position);
         holder.title.setText(currentData.title);
         holder.icon.setImageResource(currentData.iconId);

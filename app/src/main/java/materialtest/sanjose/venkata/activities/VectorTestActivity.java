@@ -1,9 +1,8 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.activities;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +11,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.telly.mrvector.MrVector;
+
+import materialtest.sanjose.venkata.materialtest.R;
+import materialtest.sanjose.venkata.util.Util;
 
 
 public class VectorTestActivity extends ActionBarActivity {

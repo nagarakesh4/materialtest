@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.materialtest;
+package materialtest.sanjose.venkata.instance;
 
 import android.app.Application;
 import android.content.Context;

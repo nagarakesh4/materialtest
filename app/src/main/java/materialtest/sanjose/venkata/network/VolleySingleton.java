@@ -7,7 +7,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
-import materialtest.sanjose.venkata.materialtest.ApplicationInstance;
+import materialtest.sanjose.venkata.instance.ApplicationInstance;
 
 /**
  * Created by buddhira on 4/30/2015.
