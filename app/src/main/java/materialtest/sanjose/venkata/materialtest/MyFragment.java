@@ -17,6 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import materialtest.sanjose.venkata.network.VolleySingleton;
+
 /**
  * Created by buddhira on 4/29/2015.
  */
@@ -44,19 +46,22 @@ public class MyFragment extends Fragment {
 
 
         //initialize the request queue object
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        //RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+        //implementing the singleton instance of volley requestq
+        RequestQueue requestQueue = VolleySingleton.getInstance().getRequestQueue();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://php.net/", new Response.Listener<String>() {
             //Once the data is downloaded through Volley, this response method will have the
             // response (success in angjs)
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getActivity(), "Success RESPONSE " + response, Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(getActivity(), "Successful RESPONSE " + response, Toast.LENGTH_SHORT).show();
             }
         }, // if suppose that vogella request gave an error, then this, like in angjs
         new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error RESPONSE " + error, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), "Error RESPONSE " + error, Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(stringRequest);

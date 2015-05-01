@@ -23,4 +23,9 @@
         android:orderInCategory="400"
         app:showAsAction="never"
         android:title="Material Tabs"/>
+    <item
+        android:id="@+id/vectorTest"
+        android:orderInCategory="500"
+        app:showAsAction="never"
+        android:title="Vector Test Activity"/>
 </menu>

@@ -2,7 +2,6 @@ package materialtest.sanjose.venkata.materialtest;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,15 +14,11 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import materialtest.sanjose.venkata.materialtest.tabs.SlidingTabLayout;
+import materialtest.sanjose.venkata.tabs.SlidingTabLayout;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -103,6 +98,9 @@ public class MainActivity extends ActionBarActivity {
         }
         if(id == R.id.materialTab) {
             startActivity(new Intent(this, UsingTabLibrary.class));
+        }
+        if(id == R.id.vectorTest) {
+            startActivity(new Intent(this, VectorTestActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

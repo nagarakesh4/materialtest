@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.materialtest.tabs;
+package materialtest.sanjose.venkata.tabs;
 
 /**
  * Created by buddhira on 4/27/2015.

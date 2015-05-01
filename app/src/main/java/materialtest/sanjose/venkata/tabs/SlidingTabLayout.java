@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.materialtest.tabs;
+package materialtest.sanjose.venkata.tabs;
 
 /**
  * Created by buddhira on 4/27/2015.
@@ -21,7 +21,6 @@ package materialtest.sanjose.venkata.materialtest.tabs;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;

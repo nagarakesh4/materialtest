@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".ApplicationInstance"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,6 +31,10 @@
         <activity
             android:name=".UsingTabLibrary"
             android:label="@string/title_activity_using_tab_library" >
+        </activity>
+        <activity
+            android:name=".VectorTestActivity"
+            android:label="@string/title_activity_vector_test" >
         </activity>
     </application>
 

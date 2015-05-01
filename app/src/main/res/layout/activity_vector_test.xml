@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="materialtest.sanjose.venkata.materialtest.VectorTestActivity">
+
+    <include
+        android:id="@+id/appBar"
+        layout="@layout/app_bar" />
+    <!--here is the vector drawable-->
+    <ImageView
+        android:id="@+id/vectorImage"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:background="@drawable/vector_android" />
+
+</LinearLayout>

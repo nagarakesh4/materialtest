@@ -127,11 +127,15 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
     private class ViewPageAdapter extends FragmentStatePagerAdapter{
 
         //uncomment below when want to use icons for tablayout
-        int icons[] = {R.drawable.ic_action_personal, R.drawable.ic_action_calendar,
+       /* int icons[] = {R.drawable.ic_action_personal, R.drawable.ic_action_calendar,
                 R.drawable.ic_action_important, R.drawable.ic_action_trending_orange,
                 R.drawable.ic_action_home, R.drawable.ic_action_articles,
                 R.drawable.ic_action_search, R.drawable.ic_action_trending_orange,
-                R.drawable.ic_action_upcoming, R.drawable.ic_action_trending};
+                R.drawable.ic_action_upcoming, R.drawable.ic_action_trending};*/
+
+        //android svg items
+        int icons[] = {R.drawable.vector_android, R.drawable.vector_android,
+                R.drawable.vector_android};
 
         public ViewPageAdapter(FragmentManager fm) {
             super(fm);

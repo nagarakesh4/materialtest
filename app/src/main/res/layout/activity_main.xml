@@ -17,7 +17,7 @@
             android:id="@+id/appBar"
             layout="@layout/app_bar" />
 
-        <materialtest.sanjose.venkata.materialtest.tabs.SlidingTabLayout
+        <materialtest.sanjose.venkata.tabs.SlidingTabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
