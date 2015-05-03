@@ -16,13 +16,16 @@ public class ApplicationConstants {
         //BoxOffice url
         public static final String BOX_OFFICE_RT = "/lists/movies/box_office.json";
 
-        //
-
         //Combo with API
         public static final String COMBO_BO_RT = BASE_URL_RT + BOX_OFFICE_RT + "?apikey=" + API_KEY_RT;
 
-
+        // not available
         public static final String NOT_AVAILABLE = "NA";
+
+        //tags for the floating sub menu buttons
+        public static final String TAG_SORT_NAME = "sortName";
+        public static final String TAG_SORT_DATE = "sortDate";
+        public static final String TAG_SORT_RATINGS = "sortRatings";
     }
 
 }
