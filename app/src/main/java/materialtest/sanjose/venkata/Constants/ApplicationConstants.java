@@ -10,7 +10,7 @@ public class ApplicationConstants {
         public static final int MOVIES_HITS = 1;
         public static final int MOVIES_UPCOMING = 2;
 
-        public static final String API_KEY_RT = "vzm4ej9tdv6bwyy5pjwu8t3y";
+        public static final String API_KEY_RT = "<api_key>";
         public static final String BASE_URL_RT = "http://api.rottentomatoes.com/api/public/v1.0";
 
         //BoxOffice url
