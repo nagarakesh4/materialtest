@@ -16,6 +16,7 @@
 
     <TextView
         android:id="@+id/movieTitle"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -25,8 +26,11 @@
         android:alpha="0.87"
         android:gravity="right"
         android:padding="@dimen/size_half_byte"
-        android:text="Hitman Agent 47"
-        android:textSize="@dimen/size_text_primary" />
+        android:text="Interstellar"
+        android:textSize="@dimen/size_text_primary"
+        android:editable="true"
+        android:typeface="sans"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/movieReleaseDate"

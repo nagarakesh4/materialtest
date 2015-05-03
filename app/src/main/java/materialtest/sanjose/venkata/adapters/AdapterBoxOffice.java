@@ -2,7 +2,6 @@ package materialtest.sanjose.venkata.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,12 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
-import org.w3c.dom.Text;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import materialtest.sanjose.venkata.constants.ApplicationConstants;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.model.Movie;
 import materialtest.sanjose.venkata.network.VolleySingleton;
@@ -32,6 +33,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
     private VolleySingleton volleySingleton;
     private ImageLoader imageLoader;
     private ArrayList<Movie> moviesList = new ArrayList<>();
+    private DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 
     public AdapterBoxOffice(Context context) {
 
@@ -65,16 +67,38 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
 
         //we need to store data in this adapter
         //the position retrieves the movie at that position
-
         Movie currentMovie = moviesList.get(position);
+
         //set each attribute in the holder view/ recycler
         holder.movieTitle.setText(currentMovie.getMovieName());
-        holder.movieReleaseDate.setText(currentMovie.getReleaseDateTheater().toString());
+
+        Date movieReleaseDate = currentMovie.getReleaseDateTheater();
+        if(movieReleaseDate != null) {
+            String formattedReleaseDate = dateFormat.format(movieReleaseDate);
+            holder.movieReleaseDate.setText(formattedReleaseDate);
+        }else{
+            holder.movieReleaseDate.setText(ApplicationConstants.RTConstants.NOT_AVAILABLE);
+        }
+
+        int audienceScore = currentMovie.getAudienceScore();
+
+        if(audienceScore !=-1 ){
+            holder.movieAudienceScore.setRating(audienceScore / 20.0F );
+            holder.movieAudienceScore.setAlpha(1.0F);
+        }else {
+            holder.movieAudienceScore.setRating(0.0F);
+            holder.movieAudienceScore.setAlpha(0.5F);
+        }
         //divide by 20.0F for values between 0 and 5 - have remodify this approach
         holder.movieAudienceScore.setRating(currentMovie.getAudienceScore() / 20.0F);
+
         String urlThumbNail = currentMovie.getUrlThumbnail();
-        if (urlThumbNail != null) {
-            //load the image
+        loadThumbnails(urlThumbNail, holder);
+    }
+
+    private void loadThumbnails(String urlThumbNail, final ViewHolderBoxOffice holder) {
+        if (urlThumbNail != ApplicationConstants.RTConstants.NOT_AVAILABLE) {
+            //load the image using imageLoader from volleysingleton
             imageLoader.get(urlThumbNail, new ImageLoader.ImageListener() {
                 @Override
                 public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
