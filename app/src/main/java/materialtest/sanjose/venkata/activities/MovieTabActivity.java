@@ -28,21 +28,22 @@ import static materialtest.sanjose.venkata.constants.ApplicationConstants.RTCons
 import materialtest.sanjose.venkata.fragments.FragmentBoxOffice;
 import materialtest.sanjose.venkata.fragments.FragmentSearch;
 import materialtest.sanjose.venkata.fragments.FragmentUpcoming;
+import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 
 
 public class MovieTabActivity extends ActionBarActivity implements MaterialTabListener, View.OnClickListener{
 
+    private Toolbar toolbar;
     private MaterialTabHost tabHost;
     private ViewPager viewPager;
-
-
+    private ViewPageAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_using_tab_library);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.appBar);
+        toolbar = (Toolbar) findViewById(R.id.appBar);
 
         //telling to use my own action bar
         setSupportActionBar(toolbar);
@@ -54,7 +55,7 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        ViewPageAdapter adapter = new ViewPageAdapter(getSupportFragmentManager());
+        adapter = new ViewPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -105,6 +106,17 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         SubActionButton buttonSortName = itemBuilder.setContentView(iconSortName).build();
         SubActionButton buttonSortDate = itemBuilder.setContentView(iconSortDate).build();
         SubActionButton buttonSortRatings = itemBuilder.setContentView(iconSortRatings).build();
+
+        //perform on click for all the above item
+        buttonSortDate.setOnClickListener(this);
+        buttonSortName.setOnClickListener(this);
+        buttonSortRatings.setOnClickListener(this);
+
+        //instead of storing & using instances of the above (3) buttons while using them
+        //we use tags to identify the corresponding button click in onClick
+        buttonSortName.setTag(TAG_SORT_NAME);
+        buttonSortDate.setTag(TAG_SORT_DATE);
+        buttonSortRatings.setTag(TAG_SORT_RATINGS);
 
         //add actions in the submenu by attaching to the main action button
         FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
@@ -175,6 +187,16 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
     @Override
     public void onClick(View v) {
+        // check which tag was actually triggered
+        if(v.getTag().equals(TAG_SORT_NAME)){
+            Logger.showToast(this, "Sorting by name...");
+        }
+        if(v.getTag().equals(TAG_SORT_DATE)){
+            Logger.showToast(this, "Sorting by date...");
+        }
+        if(v.getTag().equals(TAG_SORT_RATINGS)){
+            Logger.showToast(this, "Sorting by ratings...");
+        }
 
     }
 
