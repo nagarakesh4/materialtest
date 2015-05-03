@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ import materialtest.sanjose.venkata.fragments.FragmentUpcoming;
 import materialtest.sanjose.venkata.materialtest.R;
 
 
-public class MovieTabActivity extends ActionBarActivity implements MaterialTabListener{
+public class MovieTabActivity extends ActionBarActivity implements MaterialTabListener, View.OnClickListener{
 
     private MaterialTabHost tabHost;
     private ViewPager viewPager;
@@ -77,25 +78,29 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         }
 
         ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.ic_launcher);
+        imageView.setImageResource(R.drawable.ic_action_new);
 
         FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
                 .setContentView(imageView)
+                //setting our own background color to float action
+                .setBackgroundDrawable(R.drawable.selector_main_float)
+                //.setBackgroundDrawable(R.color.favBlue)
                 .build();
 
                         //sub menu
         //sort by name
         ImageView iconSortName = new ImageView(this);
-        iconSortName.setImageResource(R.drawable.ic_action_home);
+        iconSortName.setImageResource(R.drawable.ic_action_alphabets);
         //sort by date
         ImageView iconSortDate = new ImageView(this);
-        iconSortDate.setImageResource(R.drawable.ic_action_personal);
+        iconSortDate.setImageResource(R.drawable.ic_action_calendar);
         //sort by ratings
         ImageView iconSortRatings = new ImageView(this);
         iconSortRatings.setImageResource(R.drawable.ic_action_trending_orange);
         //sub menu
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
-
+        //add color to sub menu button background
+        itemBuilder.setBackgroundDrawable(getResources().getDrawable(R.drawable.selector_sub_float));
         //construct the menu using the itembuilder
         SubActionButton buttonSortName = itemBuilder.setContentView(iconSortName).build();
         SubActionButton buttonSortDate = itemBuilder.setContentView(iconSortDate).build();
@@ -165,6 +170,11 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
     @Override
     public void onTabUnselected(MaterialTab materialTab) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 
