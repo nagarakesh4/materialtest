@@ -33,6 +33,7 @@ import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.model.Movie;
 import materialtest.sanjose.venkata.network.VolleySingleton;
+
 import static materialtest.sanjose.venkata.util.MovieResponseKeys.EndpointBoxOffice.*;
 
 /**
@@ -112,7 +113,7 @@ public class FragmentBoxOffice extends Fragment {
 
     private void sendJsonRequest() {
 
-        JsonObjectRequest boxOfficeRequest = new JsonObjectRequest(Request.Method.GET, getRequestUrl(10),
+        JsonObjectRequest boxOfficeRequest = new JsonObjectRequest(Request.Method.GET, getRequestUrl(40),
                 (String) null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -134,7 +135,15 @@ public class FragmentBoxOffice extends Fragment {
 
     private ArrayList<Movie> parseJSONResponse(JSONObject response) {
         ArrayList<Movie> moviesList = new ArrayList<>();
-        if(response != null && response.length() > 0) {
+        if (response != null && response.length() > 0) {
+
+            long id = 0;
+            String title = NOT_AVAILABLE;
+            String releaseDate = NOT_AVAILABLE;
+            int audienceScore = -1;
+            String synopsis = NOT_AVAILABLE;
+            String urlThumbnail = NOT_AVAILABLE;
+            Date date = null;
 
             // the response is a movies object in json array format
             try {
@@ -145,60 +154,80 @@ public class FragmentBoxOffice extends Fragment {
 
                         //inside this movie json array, we get json objects of each movie
                         JSONObject currentMovie = arrayMovies.getJSONObject(i);
-                        long id = currentMovie.getLong(KEY_ID);
-                        String title = currentMovie.getString(KEY_TITLE);
-                        JSONObject objectReleaseDates = currentMovie.getJSONObject(KEY_RELEASE_DATES);
 
-                        String releaseDate = null;
-                        //convert to date object
-                        if (objectReleaseDates.has(KEY_THEATER)) {
-                            releaseDate = objectReleaseDates.getString(KEY_THEATER);
-                        } else {
-                            releaseDate = NOT_AVAILABLE;
-                            // need to do the same in parse json exception
+                        //get the movie id
+                        if (currentMovie.has(KEY_ID) && !currentMovie.isNull(KEY_ID)) {
+                            id = currentMovie.getLong(KEY_ID);
                         }
 
-                        JSONObject objectRatings = currentMovie.getJSONObject(KEY_RATINGS);
-                        int audienceScore = -1;
-                        if (objectRatings.has(KEY_AUDIENCE_SCORE)) {
-                            audienceScore = objectRatings.getInt(KEY_AUDIENCE_SCORE);
-                            //should be only 0 to 100
-                            //set text view (hide initially) if rating available then show stars
-                            // if rating na then set the text view to be shown
+                        //get the movie name
+                        if ((currentMovie.has(KEY_TITLE)) && !currentMovie.isNull(KEY_TITLE)) {
+                            title = currentMovie.getString(KEY_TITLE);
                         }
 
-                        String synopsis = currentMovie.getString(KEY_SYNOPSIS);
+                        //get the release dates
+                        if (currentMovie.has(KEY_RELEASE_DATES) && !currentMovie.isNull(KEY_RELEASE_DATES)) {
+                            JSONObject objectReleaseDates = currentMovie.getJSONObject(KEY_RELEASE_DATES);
 
-                        JSONObject posterObject = currentMovie.getJSONObject(KEY_POSTERS);
-                        String urlThumbnail = null;
-                        if (posterObject.has(KEY_THUMBNAIL)) {
-                            urlThumbnail = posterObject.getString(KEY_THUMBNAIL);
+                            if (objectReleaseDates != null &&
+                                    objectReleaseDates.has(KEY_THEATER) &&
+                                    !objectReleaseDates.isNull(KEY_THEATER)) {
+                                releaseDate = objectReleaseDates.getString(KEY_THEATER);
+                            }
+                        }
+
+                        // get the audience score
+                        if (currentMovie.has(KEY_RATINGS) && !currentMovie.isNull(KEY_RATINGS)) {
+                            JSONObject objectRatings = currentMovie.getJSONObject(KEY_RATINGS);
+                            if (objectRatings != null &&
+                                    objectRatings.has(KEY_AUDIENCE_SCORE) &&
+                                    !objectRatings.isNull(KEY_AUDIENCE_SCORE)) {
+                                audienceScore = objectRatings.getInt(KEY_AUDIENCE_SCORE);
+                                //should be only 0 to 100
+                                //set text view (hide initially) if rating available then show stars
+                                // if rating na then set the text view to be shown
+                            }
+                        }
+
+                        //get the synopsis
+                        if (currentMovie.has(KEY_SYNOPSIS) && !currentMovie.isNull(KEY_SYNOPSIS)) {
+                            synopsis = currentMovie.getString(KEY_SYNOPSIS);
+                        }
+
+                        //get the thumbnail
+                        if (currentMovie.has(KEY_POSTERS) && !currentMovie.isNull(KEY_POSTERS)) {
+                            JSONObject posterObject = currentMovie.getJSONObject(KEY_POSTERS);
+                            if (posterObject != null &&
+                                    posterObject.has(KEY_THUMBNAIL) &&
+                                    !posterObject.isNull(KEY_THUMBNAIL)) {
+                                urlThumbnail = posterObject.getString(KEY_THUMBNAIL);
+                            }
                         }
 
                         Movie movie = new Movie();
                         movie.setMovieId(id);
                         movie.setMovieName(title);
-                        Date date = dateFormat.parse(releaseDate);//this can fail if no date (NA)
+                        try{
+                            date = dateFormat.parse(releaseDate);//this can fail if no date (NA)
+                        }catch (ParseException e) {}
                         movie.setReleaseDateTheater(date);
                         movie.setAudienceScore(audienceScore);
                         movie.setSynopsis(synopsis);
                         movie.setUrlThumbnail(urlThumbnail);
 
-                        moviesList.add(movie);
-                        //dataMovies.append("[" + id + ", " + title + ", " + releaseDate + ", " + audienceScore + "]");
+                        // donot show the movie if there is no id for the movie or the title
+                        if (id != -1 && !title.equals(NOT_AVAILABLE)) {
+                            moviesList.add(movie);
+                            //dataMovies.append("[" + id + ", " + title + ", " + releaseDate + ", " + audienceScore + "]");
+                        }
                     }
-                    Logger.showLogInfo(moviesList.toString());
-
-                    //Logger.showToast(getActivity(), moviesList.toString());
-                } else {
+                  } else {
                     Logger.showToast(getActivity(), "no movies, try later");
                 }
             } catch (JSONException e) {
 
-            } catch (ParseException e) {
-                e.printStackTrace();
             }
-        }else{
+        } else {
 
         }
         return moviesList;
