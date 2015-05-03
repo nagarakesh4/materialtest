@@ -1,11 +1,16 @@
 package materialtest.sanjose.venkata.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
+
+import materialtest.sanjose.venkata.logging.Logger;
 
 /**
  * Created by buddhira on 5/1/2015.
  */
-public class Movie {
+public class Movie implements Parcelable{
 
     private long movieId;
     private String movieName;
@@ -47,6 +52,23 @@ public class Movie {
 
     public Movie() {
 
+    }
+
+    public Movie(Parcel input) {
+        //have to restore data back that was written to dest
+        //again the order has to be followed as stored in writeToParcel
+        movieId = input.readLong();
+        movieName = input.readString();
+        // as the date is store as long format we are retrieving and converting to date
+        releaseDateTheater = new Date(input.readLong());
+        audienceScore = input.readInt();
+        criticsScore = input.readInt();
+        synopsis = input.readString();
+        urlThumbnail = input.readString();
+        urlSelf = input.readString();
+        urlCast = input.readString();
+        urlReviews = input.readString();
+        urlSimilar = input.readString();
     }
 
     public long getMovieId() {
@@ -152,4 +174,45 @@ public class Movie {
                 "\n";
     }
 
+    //parcel - describe contents
+    @Override
+    public int describeContents() {
+        Logger.showLogInfo("describingcontents");
+        return 0;
+    }
+
+    //parcel - to write to parcel
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        Logger.showLogInfo("storetoparcel");
+        dest.writeLong(movieId);
+        dest.writeString(movieName);
+        dest.writeLong(releaseDateTheater.getTime()); //converting date to long
+        dest.writeInt(audienceScore);
+        dest.writeInt(criticsScore);
+        dest.writeString(synopsis);
+        dest.writeString(urlThumbnail);
+        dest.writeString(urlSelf);
+        dest.writeString(urlCast);
+        dest.writeString(urlReviews);
+        dest.writeString(urlSimilar);
+        
+        /*******VERY VERY IMPORTANT ************/
+        //for a boolean dest.writeInt(1) for true or dest.writeInt(0) for false
+        //read the dest in the same way as inserted
+    }
+    
+    //to restore from parcelable
+    public static final Parcelable.Creator<Movie> CREATOR
+            = new Parcelable.Creator<Movie>() {
+        public Movie createFromParcel(Parcel in) {
+            Logger.showLogInfo("createfromparcel");
+            return new Movie(in);
+        }
+
+
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 }

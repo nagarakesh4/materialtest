@@ -54,6 +54,7 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String STATE_MOVIES = "state_movies";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -100,7 +101,8 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
+        // to save all states of movies
+        outState.putParcelableArrayList(STATE_MOVIES, moviesList);
     }
 
     // prepare the request URL
@@ -291,8 +293,16 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
         adapterBoxOffice = new AdapterBoxOffice(getActivity());
         listMovieHits.setAdapter(adapterBoxOffice);
 
-        //call the json request
-        sendJsonRequest();
+        //on restoring state from rotation
+        if(savedInstanceState != null) {
+            textVolleyError.setVisibility(View.GONE);
+            moviesList = savedInstanceState.getParcelableArrayList(STATE_MOVIES);
+            //set this on the adapter
+            adapterBoxOffice.setMoviesList(moviesList);
+        }else {
+            //call the json request when the activity is called for the first time
+            sendJsonRequest();
+        }
         return view;
     }
 
