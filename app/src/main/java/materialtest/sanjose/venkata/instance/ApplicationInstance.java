@@ -1,12 +1,11 @@
 package materialtest.sanjose.venkata.instance;
 
-import android.app.Application;
 import android.content.Context;
 
 /**
  * Created by buddhira on 4/30/2015.
  */
-public class ApplicationInstance extends Application {
+public class ApplicationInstance extends android.app.Application {
 
     private static ApplicationInstance sInstance;
 

@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import materialtest.sanjose.venkata.materialtest.R;
-import materialtest.sanjose.venkata.model.InformationRowModel;
+import materialtest.sanjose.venkata.model.Information;
 
 /**
  * Created by buddhira on 4/24/2015.
@@ -24,10 +24,10 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
     private LayoutInflater inflater;
 
     //create many information objects
-    List<InformationRowModel> dataInformation = Collections.emptyList();
+    List<Information> dataInformation = Collections.emptyList();
     private Context context;
 
-    public InformationAdapter(Context context, List<InformationRowModel> dataInformation) {
+    public InformationAdapter(Context context, List<Information> dataInformation) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.dataInformation = dataInformation;
@@ -68,7 +68,7 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
         // updates the contents of the itemview
 
         //get the current data from the whole array list
-        InformationRowModel currentData = dataInformation.get(position);
+        Information currentData = dataInformation.get(position);
         Log.i("Venkata", "On Bind View Holder at "+position);
         holder.title.setText(currentData.title);
         holder.icon.setImageResource(currentData.iconId);

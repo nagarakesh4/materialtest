@@ -22,7 +22,7 @@ import java.util.List;
 
 import materialtest.sanjose.venkata.adapters.InformationAdapter;
 import materialtest.sanjose.venkata.materialtest.R;
-import materialtest.sanjose.venkata.model.InformationRowModel;
+import materialtest.sanjose.venkata.model.Information;
 
 
 /**
@@ -102,10 +102,10 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment{
             return layout;
     }
 
-    public static List<InformationRowModel> getData() {
+    public static List<Information> getData() {
         // load dummy data as the navigation drawer recommends only static data
         // but not dynamic content
-        List<InformationRowModel> dataInformation = new ArrayList<>();
+        List<Information> dataInformation = new ArrayList<>();
         int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3,
                 R.drawable.ic_number4, R.drawable.ic_next, R.drawable.ic_number1, R.drawable.ic_number2, R.drawable.ic_number3,
                 R.drawable.ic_number4, R.drawable.ic_next, R.drawable.ic_number2};
@@ -114,7 +114,7 @@ public class NavigationDrawerFragment extends android.support.v4.app.Fragment{
 
         /*for(int i=0;i<titles.length && i<icons.length; i++) {*/
         for(int i=0; i<100; i++){
-            InformationRowModel currentInformation = new InformationRowModel();
+            Information currentInformation = new Information();
             //currentInformation.iconId = icons[i];
             currentInformation.iconId = icons[i%icons.length];
             //currentInformation.title = titles[i];

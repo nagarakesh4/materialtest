@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,11 +21,11 @@ import materialtest.sanjose.venkata.network.VolleySingleton;
 /**
  * Created by buddhira on 4/29/2015.
  */
-public class MyFragment extends Fragment {
+public class MainActivityFragment extends Fragment {
     private TextView textView;
 
-    public static MyFragment getInstance(int position) {
-        MyFragment myFragment = new MyFragment();
+    public static MainActivityFragment getInstance(int position) {
+        MainActivityFragment myFragment = new MainActivityFragment();
         Bundle args = new Bundle();
         args.putInt("position", position);
         myFragment.setArguments(args);
@@ -34,7 +35,7 @@ public class MyFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_my, container, false);
+        View layout = inflater.inflate(R.layout.fragment_main_activity, container, false);
         textView = (TextView) layout.findViewById(R.id.position);
 
         Bundle bundle = getArguments();
@@ -53,13 +54,13 @@ public class MyFragment extends Fragment {
             // response (success in angjs)
             @Override
             public void onResponse(String response) {
-             //   Toast.makeText(getActivity(), "Successful RESPONSE " + response, Toast.LENGTH_SHORT).show();
+             //Toast.makeText(getActivity(), "Successful RESPONSE " + response, Toast.LENGTH_SHORT).show();
             }
         }, // if suppose that vogella request gave an error, then this, like in angjs
         new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               // Toast.makeText(getActivity(), "Error RESPONSE " + error, Toast.LENGTH_SHORT).show();
+             //Toast.makeText(getActivity(), "Error RESPONSE " + error, Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(stringRequest);
