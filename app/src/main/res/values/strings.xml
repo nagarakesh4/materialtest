@@ -27,4 +27,11 @@
     <string name="title_activity_vector_test">VectorTestActivity</string>
     <!--<string name="title_activity_movie_tab">MovieTabActivity</string>-->
     <string name="title_activity_movie_tab">Welcome to the World of Movies</string>
+
+    <!--volley error strings-->
+    <string name="error_connection">Internet Connection is required to watch this space!</string>
+    <string name="error_auth">Connection could not be established - Authentication Failed</string>
+    <string name="error_parse">Internal Server Error - Parsing failed</string>
+    <string name="error_server">Internal Server Error, please try later</string>
+    <string name="error_network">Connection could not be established - Network Error</string>
 </resources>

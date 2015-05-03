@@ -29,7 +29,6 @@
         android:text="Interstellar"
         android:textSize="@dimen/size_text_primary"
         android:editable="true"
-        android:typeface="sans"
         android:textStyle="bold" />
 
     <TextView

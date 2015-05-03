@@ -9,5 +9,16 @@
         android:id="@+id/boxOfficeMoviesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/textVolleyError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textIsSelectable="true"
+        android:textStyle="bold"
+        android:text="Internet Connection is required to watch this space!"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:textSize="20sp" />
 
 </FrameLayout>
