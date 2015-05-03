@@ -17,10 +17,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import materialtest.sanjose.venkata.fragments.MyFragment;
+import materialtest.sanjose.venkata.fragments.MainActivityFragment;
 import materialtest.sanjose.venkata.fragments.NavigationDrawerFragment;
 import materialtest.sanjose.venkata.materialtest.R;
-import materialtest.sanjose.venkata.tabs.SlidingTabLayout;
+import materialtest.sanjose.venkata.views.SlidingTabLayout;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -121,7 +121,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public Fragment getItem(int position) {
-            MyFragment myFragment = MyFragment.getInstance(position);
+            MainActivityFragment myFragment = MainActivityFragment.getInstance(position);
             return myFragment;
         }
 

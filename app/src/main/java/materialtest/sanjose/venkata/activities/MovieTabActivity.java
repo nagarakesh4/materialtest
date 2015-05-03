@@ -18,7 +18,10 @@ import android.widget.Toast;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
-import materialtest.sanjose.venkata.fragments.MyFragment;
+import static materialtest.sanjose.venkata.constants.ApplicationConstants.RTConstants.*;
+import materialtest.sanjose.venkata.fragments.FragmentBoxOffice;
+import materialtest.sanjose.venkata.fragments.FragmentSearch;
+import materialtest.sanjose.venkata.fragments.FragmentUpcoming;
 import materialtest.sanjose.venkata.materialtest.R;
 
 
@@ -26,6 +29,8 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
     private MaterialTabHost tabHost;
     private ViewPager viewPager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +107,6 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         }
         // on the options menu we now have
         if(id == R.id.home) {
-            Log.i("this is where&&", "correct");
             NavUtils.navigateUpFromSameTask(this);
         }
 
@@ -145,12 +149,27 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         //return the fragment at that position
         @Override
         public Fragment getItem(int position) {
-            return MyFragment.getInstance(position);
+            //to decide which fragment to instantiate based on the position choosen
+            Fragment fragment = null;
+
+            switch (position){
+                case MOVIES_SEARCH_RESULTS:
+                    fragment = FragmentSearch.newInstance("", "");
+                    break;
+                case MOVIES_HITS:
+                    fragment = FragmentBoxOffice.newInstance("", "");
+                    break;
+                case MOVIES_UPCOMING:
+                    fragment = FragmentUpcoming.newInstance("", "");
+                    break;
+            }
+
+            return fragment;
         }
 
         @Override
         public int getCount() {
-            return 9;
+            return 3;
         }
 
         // now write own implementation for setting text tab headers or icon tab headers

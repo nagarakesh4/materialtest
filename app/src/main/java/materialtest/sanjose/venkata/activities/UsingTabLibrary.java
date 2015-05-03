@@ -18,7 +18,7 @@ import android.widget.Toast;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
-import materialtest.sanjose.venkata.fragments.MyFragment;
+import materialtest.sanjose.venkata.fragments.MainActivityFragment;
 import materialtest.sanjose.venkata.materialtest.R;
 
 
@@ -143,7 +143,7 @@ public class UsingTabLibrary extends ActionBarActivity implements MaterialTabLis
         }
         @Override
         public Fragment getItem(int position) {
-            return MyFragment.getInstance(position);
+            return MainActivityFragment.getInstance(position);
         }
 
         @Override
