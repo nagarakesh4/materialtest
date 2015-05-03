@@ -24,15 +24,18 @@ import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
+
 import static materialtest.sanjose.venkata.constants.ApplicationConstants.RTConstants.*;
+
 import materialtest.sanjose.venkata.fragments.FragmentBoxOffice;
 import materialtest.sanjose.venkata.fragments.FragmentSearch;
 import materialtest.sanjose.venkata.fragments.FragmentUpcoming;
 import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
+import materialtest.sanjose.venkata.util.SortListener;
 
 
-public class MovieTabActivity extends ActionBarActivity implements MaterialTabListener, View.OnClickListener{
+public class MovieTabActivity extends ActionBarActivity implements MaterialTabListener, View.OnClickListener {
 
     private Toolbar toolbar;
     private MaterialTabHost tabHost;
@@ -83,12 +86,12 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
         FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
                 .setContentView(imageView)
-                //setting our own background color to float action
+                        //setting our own background color to float action
                 .setBackgroundDrawable(R.drawable.selector_main_float)
-                //.setBackgroundDrawable(R.color.favBlue)
+                        //.setBackgroundDrawable(R.color.favBlue)
                 .build();
 
-                        //sub menu
+        //sub menu
         //sort by name
         ImageView iconSortName = new ImageView(this);
         iconSortName.setImageResource(R.drawable.ic_action_alphabets);
@@ -154,15 +157,15 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
             startActivity(new Intent(this, SubActivity.class));
         }
 
-        if(id == R.id.action_about) {
+        if (id == R.id.action_about) {
             Log.i("hey wow man,", "you want to know about of this?");
         }
 
-        if(id == R.id.materialTab) {
+        if (id == R.id.materialTab) {
             startActivity(new Intent(this, MainActivity.class));
         }
         // on the options menu we now have
-        if(id == R.id.home) {
+        if (id == R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
         }
 
@@ -187,20 +190,31 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
     @Override
     public void onClick(View v) {
-        // check which tag was actually triggered
-        if(v.getTag().equals(TAG_SORT_NAME)){
-            Logger.showToast(this, "Sorting by name...");
-        }
-        if(v.getTag().equals(TAG_SORT_DATE)){
-            Logger.showToast(this, "Sorting by date...");
-        }
-        if(v.getTag().equals(TAG_SORT_RATINGS)){
-            Logger.showToast(this, "Sorting by ratings...");
+        //to read the current fragment number
+        //viewPager.getCurrentItem() -0 or 1 or 2
+        Fragment fragment = (Fragment) adapter.instantiateItem(viewPager, viewPager.getCurrentItem());
+        if (fragment instanceof SortListener) {
+            // check which tag was actually triggered
+            if (v.getTag().equals(TAG_SORT_NAME)) {
+                //Logger.showToast(this, "Sorting by name...");
+                //we will get the fragment
+                //Fragment fragment = adapter.getItem(viewPager.getCurrentItem());
+
+                //by default all fragments implement all the sorting techniques as given in interface
+                ((SortListener) fragment).onSortByName();
+            }
+            if (v.getTag().equals(TAG_SORT_DATE)) {
+                ((SortListener) fragment).onSortByDate();
+
+            }
+            if (v.getTag().equals(TAG_SORT_RATINGS)) {
+                ((SortListener) fragment).onSortByRatings();
+            }
         }
 
     }
 
-    private class ViewPageAdapter extends FragmentStatePagerAdapter{
+    private class ViewPageAdapter extends FragmentStatePagerAdapter {
 
         //uncomment below when want to use icons for tablayout
         int icons[] = {R.drawable.ic_action_personal, R.drawable.ic_action_calendar,
@@ -223,7 +237,7 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
             //to decide which fragment to instantiate based on the position choosen
             Fragment fragment = null;
 
-            switch (position){
+            switch (position) {
                 case MOVIES_SEARCH_RESULTS:
                     fragment = FragmentSearch.newInstance("", "");
                     break;

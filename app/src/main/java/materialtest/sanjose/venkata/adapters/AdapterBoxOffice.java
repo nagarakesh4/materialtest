@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import materialtest.sanjose.venkata.constants.ApplicationConstants;
+import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.model.Movie;
 import materialtest.sanjose.venkata.network.VolleySingleton;
@@ -81,7 +82,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         }
 
         int audienceScore = currentMovie.getAudienceScore();
-
+        Logger.showLogInfo("audiencescore"+audienceScore);
         if(audienceScore !=-1 ){
             holder.movieAudienceScore.setRating(audienceScore / 20.0F );
             holder.movieAudienceScore.setAlpha(1.0F);

@@ -18,7 +18,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -40,6 +39,8 @@ import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.model.Movie;
 import materialtest.sanjose.venkata.network.VolleySingleton;
+import materialtest.sanjose.venkata.util.MovieSorter;
+import materialtest.sanjose.venkata.util.SortListener;
 
 import static materialtest.sanjose.venkata.util.MovieResponseKeys.EndpointBoxOffice.*;
 
@@ -48,7 +49,7 @@ import static materialtest.sanjose.venkata.util.MovieResponseKeys.EndpointBoxOff
  * Use the {@link FragmentBoxOffice#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentBoxOffice extends Fragment {
+public class FragmentBoxOffice extends Fragment implements SortListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -74,6 +75,9 @@ public class FragmentBoxOffice extends Fragment {
     //create a adapterboxoffice object to have the movies list
     private AdapterBoxOffice adapterBoxOffice;
 
+    //MovieSorter
+    private MovieSorter movieSorter;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -92,13 +96,21 @@ public class FragmentBoxOffice extends Fragment {
         return fragment;
     }
 
-    // preapare the request URL
+    //save instance when the screen is rotated
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+    }
+
+    // prepare the request URL
     public static String getRequestUrl(int limit) {
         return COMBO_BO_RT + "&limit=" + limit;
     }
 
     public FragmentBoxOffice() {
         // Required empty public constructor
+        movieSorter = new MovieSorter();
     }
 
     @Override
@@ -285,4 +297,24 @@ public class FragmentBoxOffice extends Fragment {
     }
 
 
+    @Override
+    public void onSortByName() {
+        Logger.showToast(getActivity(), "Sorting by movie title...");
+        movieSorter.sortByName(moviesList);
+        adapterBoxOffice.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onSortByDate() {
+        Logger.showToast(getActivity(), "Sorting by movie releasedate...");
+        movieSorter.sortByDate(moviesList);
+        adapterBoxOffice.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onSortByRatings() {
+        Logger.showToast(getActivity(), "Sorting by movie ratings...");
+        movieSorter.sortByRating(moviesList);
+        adapterBoxOffice.notifyDataSetChanged();
+    }
 }
