@@ -1,4 +1,4 @@
-package materialtest.sanjose.venkata.Constants;
+package materialtest.sanjose.venkata.constants;
 
 /**
  * Created by buddhira on 5/1/2015.
@@ -20,6 +20,9 @@ public class ApplicationConstants {
 
         //Combo with API
         public static final String COMBO_BO_RT = BASE_URL_RT + BOX_OFFICE_RT + "?apikey=" + API_KEY_RT;
+
+
+        public static final String NOT_AVAILABLE = "NA";
     }
 
 }
