@@ -27,7 +27,7 @@
         android:layout_height="48dp"
         android:layout_below="@id/appBar"
         app:accentColor="#ffee000b"
-        app:primaryColor="#ff000000"
+        app:primaryColor="#03A9F4"
         app:hasIcons="true"/>
     <!--<it.neokree.materialtabs.MaterialTabHost
         android:id="@+id/materialTabHost"
