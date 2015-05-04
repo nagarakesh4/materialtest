@@ -5,33 +5,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="materialtest.sanjose.venkata.activities.UsingTabLibrary">
-
-    <include
-        android:id="@+id/appBar"
-        layout="@layout/app_bar" />
-
-    <!-- uncomment for Text Tabs -->
-    <!--<it.neokree.materialtabs.MaterialTabHost
-        android:id="@+id/materialTabHost"
+    <LinearLayout
+        android:id="@+id/container_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/appBar"
-        app:textColor="@android:color/white"
-        app:accentColor="@color/accent"
-        app:primaryColor="@color/primary"/>-->
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/app_bar" />
 
-    <!-- for Icon Tabs -->
-    <it.neokree.materialtabs.MaterialTabHost
-        android:id="@+id/materialTabHost"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/appBar"
-        app:accentColor="@color/accent"
-        app:primaryColor="@color/primary"
-        app:hasIcons="true"
-        app:iconColor="@android:color/white"/>
-    <!--app:iconColor="@android:color/white"-->
+        <!-- uncomment for Text Tabs -->
+        <!--<it.neokree.materialtabs.MaterialTabHost
+            android:id="@+id/materialTabHost"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/appBar"
+            app:textColor="@android:color/white"
+            app:accentColor="@color/accent"
+            app:primaryColor="@color/primary"/>-->
 
+        <!-- for Icon Tabs -->
+        <it.neokree.materialtabs.MaterialTabHost
+            android:id="@+id/materialTabHost"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@id/appBar"
+            app:accentColor="@color/accent"
+            app:primaryColor="@color/primary"
+            app:hasIcons="true"
+            app:iconColor="@android:color/white"/>
+        <!--app:iconColor="@android:color/white"-->
+    </LinearLayout>
     <!--this view pager is for the corresponding view of each tab!-->
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import materialtest.sanjose.venkata.fragments.MainActivityFragment;
 import materialtest.sanjose.venkata.fragments.NavigationDrawerFragment;
 import materialtest.sanjose.venkata.materialtest.R;
+import materialtest.sanjose.venkata.util.AnimationUtils;
 import materialtest.sanjose.venkata.views.SlidingTabLayout;
 
 

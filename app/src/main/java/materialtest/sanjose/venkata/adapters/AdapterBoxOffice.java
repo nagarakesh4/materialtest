@@ -36,6 +36,8 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
     private ImageLoader imageLoader;
     private ArrayList<Movie> moviesList = new ArrayList<>();
     private DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+    private int previousPosition = 0;
+
 
     public AdapterBoxOffice(Context context) {
 
@@ -75,26 +77,32 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         holder.movieTitle.setText(currentMovie.getMovieName());
 
         Date movieReleaseDate = currentMovie.getReleaseDateTheater();
-        if(movieReleaseDate != null) {
+        if (movieReleaseDate != null) {
             String formattedReleaseDate = dateFormat.format(movieReleaseDate);
             holder.movieReleaseDate.setText(formattedReleaseDate);
-        }else{
+        } else {
             holder.movieReleaseDate.setText(ApplicationConstants.RTConstants.NOT_AVAILABLE);
         }
 
         int audienceScore = currentMovie.getAudienceScore();
-        Logger.showLogInfo("audiencescore"+audienceScore);
-        if(audienceScore !=-1 ){
-            holder.movieAudienceScore.setRating(audienceScore / 20.0F );
+        Logger.showLogInfo("audiencescore" + audienceScore);
+        if (audienceScore != -1) {
+            holder.movieAudienceScore.setRating(audienceScore / 20.0F);
             holder.movieAudienceScore.setAlpha(1.0F);
-        }else {
+        } else {
             holder.movieAudienceScore.setRating(0.0F);
             holder.movieAudienceScore.setAlpha(0.5F);
         }
         //divide by 20.0F for values between 0 and 5 - have remodify this approach
         //holder.movieAudienceScore.setRating(currentMovie.getAudienceScore() / 20.0F);
 
-        AnimationUtils.animateItems(holder);
+        //if we are scrolling down true
+        if(position > previousPosition){
+            AnimationUtils.animateLibrary(holder);
+        }else{
+            AnimationUtils.animateLibrary(holder);
+        }
+        previousPosition = position;
 
         String urlThumbNail = currentMovie.getUrlThumbnail();
         loadThumbnails(urlThumbNail, holder);
@@ -122,7 +130,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         return moviesList.size();
     }
 
-    static class ViewHolderBoxOffice extends RecyclerView.ViewHolder{
+    static class ViewHolderBoxOffice extends RecyclerView.ViewHolder {
         //create object of image view, text view and rating bar used in xml
 
         ImageView movieThumbnail;

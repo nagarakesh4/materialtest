@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ import materialtest.sanjose.venkata.fragments.FragmentSearch;
 import materialtest.sanjose.venkata.fragments.FragmentUpcoming;
 import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
+import materialtest.sanjose.venkata.util.AnimationUtils;
 import materialtest.sanjose.venkata.util.SortListener;
 
 
@@ -41,6 +43,7 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
     private MaterialTabHost tabHost;
     private ViewPager viewPager;
     private ViewPageAdapter adapter;
+    private ViewGroup mContainerToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,14 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
         tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        //applying animation to toolbar
+        //trying animation
+        //AnimationUtils.animateToolbar(toolbar, tabHost);
+
+        ViewGroup mContainerToolbar = (ViewGroup) findViewById(R.id.container_app_bar);
+
+        AnimationUtils.animateToolbar(mContainerToolbar);
 
         adapter = new ViewPageAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
