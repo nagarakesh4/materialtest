@@ -22,6 +22,7 @@ import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.model.Movie;
 import materialtest.sanjose.venkata.network.VolleySingleton;
+import materialtest.sanjose.venkata.util.AnimationUtils;
 
 /**
  * Created by buddhira on 5/2/2015.
@@ -91,7 +92,9 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
             holder.movieAudienceScore.setAlpha(0.5F);
         }
         //divide by 20.0F for values between 0 and 5 - have remodify this approach
-        holder.movieAudienceScore.setRating(currentMovie.getAudienceScore() / 20.0F);
+        //holder.movieAudienceScore.setRating(currentMovie.getAudienceScore() / 20.0F);
+
+        AnimationUtils.animateItems(holder);
 
         String urlThumbNail = currentMovie.getUrlThumbnail();
         loadThumbnails(urlThumbNail, holder);
@@ -130,6 +133,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         //the item view is instantiated by the layout inflater from
         // on onCreateViewHolder() and initialize all the objects in that layout here
         public ViewHolderBoxOffice(View itemView) {
+            // the item view is used in the animation class
             super(itemView);
             movieThumbnail = (ImageView) itemView.findViewById(R.id.movieThumbnail);
             movieTitle = (TextView) itemView.findViewById(R.id.movieTitle);
