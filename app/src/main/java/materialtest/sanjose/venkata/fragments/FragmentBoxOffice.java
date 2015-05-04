@@ -2,7 +2,9 @@ package materialtest.sanjose.venkata.fragments;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,7 +51,7 @@ import static materialtest.sanjose.venkata.util.MovieResponseKeys.EndpointBoxOff
  * Use the {@link FragmentBoxOffice#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentBoxOffice extends Fragment implements SortListener{
+public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRefreshLayout.OnRefreshListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -78,6 +80,9 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
 
     //MovieSorter
     private MovieSorter movieSorter;
+
+    //swipe refresh layout
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     /**
      * Use this factory method to create a new instance of
@@ -289,6 +294,12 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
         //text volley error
         textVolleyError = (TextView) view.findViewById(R.id.textVolleyError);
 
+        //mSwipeRefreshLayout
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeMovieHits);
+
+        //onrefresh listener for swipe to get notification
+        mSwipeRefreshLayout.setOnRefreshListener(this );
+
         //initialize the adapter class and set the adapter in the recycler view
         adapterBoxOffice = new AdapterBoxOffice(getActivity());
         listMovieHits.setAdapter(adapterBoxOffice);
@@ -311,6 +322,11 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
     public void onSortByName() {
         Logger.showToast(getActivity(), "Sorting by movie title...");
         movieSorter.sortByName(moviesList);
+        //sample way to hide refresh progress
+        if(mSwipeRefreshLayout.isRefreshing()){
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
+
         adapterBoxOffice.notifyDataSetChanged();
     }
 
@@ -326,5 +342,19 @@ public class FragmentBoxOffice extends Fragment implements SortListener{
         Logger.showToast(getActivity(), "Sorting by movie ratings...");
         movieSorter.sortByRating(moviesList);
         adapterBoxOffice.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRefresh() {
+        // will show swype for refresh
+        Logger.showToast(getActivity(), "Sorting list..");
+        //usually a async task should be called and the post execute method should off the swipe
+        //progress bar
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                onSortByName();
+            }
+        },4000);
     }
 }
