@@ -323,7 +323,10 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
     public void onSortByName() {
         movieSorter.sortByName(moviesList);
         Logger.showToast(getActivity(), "Sorted by movie title...");
-
+        /*//sample way to hide refresh progress
+        if(mSwipeRefreshLayout.isRefreshing()){
+            mSwipeRefreshLayout.setRefreshing(false);
+        }*/
 
         adapterBoxOffice.notifyDataSetChanged();
     }
@@ -353,11 +356,12 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
             public void run() {
                 //onSortByName();
                 adapterBoxOffice.setMoviesList(moviesList);
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         },4000);
-        //sample way to hide refresh progress
+        /*//sample way to hide refresh progress
         if(mSwipeRefreshLayout.isRefreshing()){
             mSwipeRefreshLayout.setRefreshing(false);
-        }
+        }*/
     }
 }
