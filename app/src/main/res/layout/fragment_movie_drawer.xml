@@ -9,10 +9,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DADADA"
+    android:background="@android:color/white"
     tools:context="materialtest.sanjose.venkata.fragments.MovieDrawerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- will implement a circular image view using pkmmte - gravatar-->
+    <!--&lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;
     <LinearLayout
         android:id="@+id/movieDrawerImage"
         android:layout_width="match_parent"
@@ -25,14 +26,12 @@
             android:layout_marginBottom="24dp"
             android:layout_marginTop="@dimen/drawer_margin_top"
             android:src="@drawable/ic_abstract" />
-    </LinearLayout>
+    </LinearLayout>-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/movieDrawerList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/movieDrawerImage"
-        android:background="#fff">
+        android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>
