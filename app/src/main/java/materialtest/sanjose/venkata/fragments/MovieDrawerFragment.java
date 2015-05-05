@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import materialtest.sanjose.venkata.activities.MovieTabActivity;
 import materialtest.sanjose.venkata.adapters.InformationAdapter;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.model.Information;
@@ -96,6 +97,9 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
                 //close the drawer on click of any items in the recycler view of the movie
                 //navigation bar
                 mDrawerLayout.closeDrawer(GravityCompat.START);
+
+                //get the activity index which was clicked in the navigation menu
+                ((MovieTabActivity) getActivity()).onDrawerItemClicked(position);
             }
 
             @Override

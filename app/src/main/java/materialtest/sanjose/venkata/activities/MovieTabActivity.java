@@ -152,6 +152,13 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
     }
 
+    // is called from movie drawer fragment
+    public void onDrawerItemClicked(int index){
+       //set the current item on that pager
+        viewPager.setCurrentItem(index);
+    }
+    //in case to read the toolbar
+    private View getContainerToolbar(){return mContainerToolbar ;}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
