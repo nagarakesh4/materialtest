@@ -67,7 +67,6 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         MovieDrawerFragment movieDrawerFragment = (MovieDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_movie_drawer);
         //send tool bar, icon changes and everything from here
-        Logger.showLogInfo(String.valueOf(movieDrawerFragment));
         movieDrawerFragment.setUp(R.id.fragment_movie_drawer, (android.support.v4.widget.DrawerLayout) findViewById(R.id.movieDrawerLayout), toolbar);
 
         tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
@@ -282,8 +281,6 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         //return the fragment at that position
         @Override
         public Fragment getItem(int position) {
-
-            Logger.showLogInfo(position+"");
 
             //to decide which fragment to instantiate based on the position choosen
             Fragment fragment = null;

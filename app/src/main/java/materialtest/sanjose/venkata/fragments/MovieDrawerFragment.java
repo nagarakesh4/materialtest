@@ -105,9 +105,6 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
                 // so decrementing to match the correct fragment.
 
                 ((MovieTabActivity) getActivity()).onDrawerItemClicked(position-1);
-                if(position-1 != 2) {
-                    ((MovieTabActivity) getActivity()).onDrawerSlide(1.0f);
-                }
             }
 
             @Override
