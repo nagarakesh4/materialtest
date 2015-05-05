@@ -111,19 +111,22 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         }else {
             // if the holder is item holder then set the text and image
+            //data.get(3) will crash so compensate by -1
             ItemHolder itemHolder = (ItemHolder) holder;
-            Information currentData = dataInformation.get(position);
+            Information currentData = dataInformation.get(position-1);
             Log.i("Venkata", "On Bind View Holder at " + position);
             itemHolder.title.setText(currentData.title);
             itemHolder.icon.setImageResource(currentData.iconId);
         }
     }
     /*
-    * this is for returning the number of total items list
+    * this is for returning the number of total items list (gravatar + 3 items (fragments)
+    *
+    * the data information size is 3 so +1 for gravatar
     * */
     @Override
     public int getItemCount() {
-        return dataInformation.size();
+        return dataInformation.size() + 1;
     }
 
     /*we have to create our custom view holder for setting objects*/
