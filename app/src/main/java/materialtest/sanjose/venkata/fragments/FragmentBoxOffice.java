@@ -310,6 +310,10 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
             moviesList = savedInstanceState.getParcelableArrayList(STATE_MOVIES);
             //set this on the adapter
             adapterBoxOffice.setMoviesList(moviesList);
+            //sample way to hide refresh progress
+            if(mSwipeRefreshLayout.isRefreshing()){
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
         }else {
             //call the json request when the activity is called for the first time
             sendJsonRequest();
@@ -320,40 +324,38 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
 
     @Override
     public void onSortByName() {
-        Logger.showToast(getActivity(), "Sorting by movie title...");
         movieSorter.sortByName(moviesList);
-        //sample way to hide refresh progress
-        if(mSwipeRefreshLayout.isRefreshing()){
-            mSwipeRefreshLayout.setRefreshing(false);
-        }
+        Logger.showToast(getActivity(), "Sorted by movie title...");
+
 
         adapterBoxOffice.notifyDataSetChanged();
     }
 
     @Override
     public void onSortByDate() {
-        Logger.showToast(getActivity(), "Sorting by movie releasedate...");
         movieSorter.sortByDate(moviesList);
+        Logger.showToast(getActivity(), "Sorted by movie releasedate...");
         adapterBoxOffice.notifyDataSetChanged();
     }
 
     @Override
     public void onSortByRatings() {
-        Logger.showToast(getActivity(), "Sorting by movie ratings...");
         movieSorter.sortByRating(moviesList);
+        Logger.showToast(getActivity(), "Sorted by movie ratings...");
         adapterBoxOffice.notifyDataSetChanged();
     }
 
     @Override
     public void onRefresh() {
         // will show swype for refresh
-        Logger.showToast(getActivity(), "Sorting list..");
+        Logger.showToast(getActivity(), "Sorting list, Please wait..");
         //usually a async task should be called and the post execute method should off the swipe
         //progress bar
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                onSortByName();
+                //onSortByName();
+                adapterBoxOffice.setMoviesList(moviesList);
             }
         },4000);
     }
