@@ -93,6 +93,8 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
             @Override
             public void onClick(View view, int position) {
                 //Toast.makeText(getActivity(), "onClick "+position, Toast.LENGTH_SHORT).show();
+                //close the drawer on click of any items in the recycler view of the movie
+                //navigation bar
                 mDrawerLayout.closeDrawer(GravityCompat.START);
             }
 

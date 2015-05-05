@@ -31,7 +31,8 @@
         android:id="@+id/movieDrawerList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/movieDrawerImage">
+        android:layout_below="@+id/movieDrawerImage"
+        android:background="#fff">
 
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>
