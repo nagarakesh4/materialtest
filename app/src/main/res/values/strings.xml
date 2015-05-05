@@ -15,6 +15,12 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <string-array name="movieDrawerTabs">
+        <item>Search Movies</item>
+        <item>Now Playing</item>
+        <item>UpComing Movies</item>
+    </string-array>
+
     <string-array name="tabs">
         <item>Tab 1</item>
         <item>Tab 2</item>
