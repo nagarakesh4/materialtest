@@ -32,7 +32,6 @@ import materialtest.sanjose.venkata.fragments.FragmentBoxOffice;
 import materialtest.sanjose.venkata.fragments.FragmentSearch;
 import materialtest.sanjose.venkata.fragments.FragmentUpcoming;
 import materialtest.sanjose.venkata.fragments.MovieDrawerFragment;
-import materialtest.sanjose.venkata.fragments.NavigationDrawerFragment;
 import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.util.AnimationUtils;
@@ -46,6 +45,9 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
     private ViewPager viewPager;
     private ViewPageAdapter adapter;
     private ViewGroup mContainerToolbar;
+
+    private FloatingActionMenu mFABMenu;
+    private FloatingActionButton mFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +107,7 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.ic_action_new);
 
-        FloatingActionButton actionButton = new FloatingActionButton.Builder(this)
+        mFAB = new FloatingActionButton.Builder(this)
                 .setContentView(imageView)
                         //setting our own background color to float action
                 .setBackgroundDrawable(R.drawable.selector_main_float)
@@ -143,11 +145,11 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         buttonSortRatings.setTag(TAG_SORT_RATINGS);
 
         //add actions in the submenu by attaching to the main action button
-        FloatingActionMenu actionMenu = new FloatingActionMenu.Builder(this)
+        mFABMenu = new FloatingActionMenu.Builder(this)
                 .addSubActionView(buttonSortName)
                 .addSubActionView(buttonSortDate)
                 .addSubActionView(buttonSortRatings)
-                .attachTo(actionButton)
+                .attachTo(mFAB)
                 .build();
 
     }
@@ -245,6 +247,21 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
     }
 
+    //is being called by toggle translate fab
+    private void toggleTranslateFAB(float slideOffset){
+        if(mFABMenu != null){
+            if(mFABMenu.isOpen()) {
+                mFABMenu.close(true);
+            }
+            mFAB.setTranslationX(slideOffset * 300);
+        }
+    }
+
+    // is called when the drawer is sliding - moviedrawerfragment
+    public void onDrawerSlide(float slideOffset) {
+        toggleTranslateFAB(slideOffset);
+    }
+
     private class ViewPageAdapter extends FragmentStatePagerAdapter {
 
         //uncomment below when want to use icons for tablayout
@@ -265,6 +282,9 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         //return the fragment at that position
         @Override
         public Fragment getItem(int position) {
+
+            Logger.showLogInfo(position+"");
+
             //to decide which fragment to instantiate based on the position choosen
             Fragment fragment = null;
 

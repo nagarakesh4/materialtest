@@ -23,6 +23,7 @@ import java.util.List;
 
 import materialtest.sanjose.venkata.activities.MovieTabActivity;
 import materialtest.sanjose.venkata.adapters.InformationAdapter;
+import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.model.Information;
 
@@ -102,7 +103,11 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
                 //((MovieTabActivity) getActivity()).onDrawerItemClicked(position);
                 //after introducing sectioned recycler view the gravatar is counted as a position
                 // so decrementing to match the correct fragment.
+
                 ((MovieTabActivity) getActivity()).onDrawerItemClicked(position-1);
+                if(position-1 != 2) {
+                    ((MovieTabActivity) getActivity()).onDrawerSlide(1.0f);
+                }
             }
 
             @Override
@@ -160,6 +165,7 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
         //first usage , see line #89
         containerView = getActivity().findViewById(FragmentId);
         mDrawerLayout = drawerLayout;
+        //drawer listener
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
             //called when completely opened
             @Override
@@ -176,7 +182,7 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
                 //invalidate optionsmenu will draw the action menu again=> once the drawer is opened, this ondraweropened
                 //is triggered and now the navigation drawer is partially obstructing the action bar so it redraws
                 //the menu!!
-                getActivity().invalidateOptionsMenu();
+                getActivity().supportInvalidateOptionsMenu();
             }
 
             @Override
@@ -194,17 +200,27 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
                     toolbar.setAlpha(1 - slideOffset);
                 }
             }*/
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                ((MovieTabActivity) getActivity()).onDrawerSlide(slideOffset);
+                toolbar.setAlpha(1 - slideOffset/2);
+
+            }
         };
-        // the very first time
-        if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
-            mDrawerLayout.openDrawer(containerView);
-        }
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         // for showing the burger icon on swype of the navigation drawerk
         mDrawerLayout.post(new Runnable() {
             @Override
             public void run() {
                 mDrawerToggle.syncState();
+                // the very first time
+                if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
+                    mDrawerLayout.openDrawer(containerView);
+                }
+
             }
         });
     }
