@@ -18,6 +18,7 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:src="@drawable/ic_launcher"
+        android:id="@+id/gravatar"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="40dp"
@@ -27,4 +28,41 @@
         app:border_width="4dp"
         app:shadow="true" />
 
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/gravatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello"
+            android:gravity="right"
+            android:textColor="@android:color/white"
+            style="@style/TextAppearance.AppCompat.Large" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Venkata"
+            android:textColor="@android:color/white"
+            android:gravity="right"
+            style="@style/TextAppearance.AppCompat.Medium" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/accent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="nagarakesh4@gmail.com"
+            android:textColor="@android:color/white"
+            android:gravity="right"
+            style="@style/TextAppearance.AppCompat.Small" />
+    </LinearLayout>
 </RelativeLayout>
