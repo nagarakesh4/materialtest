@@ -154,7 +154,10 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
 
     // is called from movie drawer fragment
     public void onDrawerItemClicked(int index){
-       //set the current item on that pager
+        //based on the index provided by on click method of recycler view
+        // change the contents in the fragment/ switch to the appropriate tab
+
+        //set the current item on that pager
         viewPager.setCurrentItem(index);
     }
     //in case to read the toolbar
