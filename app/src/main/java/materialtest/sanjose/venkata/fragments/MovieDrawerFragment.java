@@ -99,7 +99,10 @@ public class MovieDrawerFragment extends android.support.v4.app.Fragment{
                 mDrawerLayout.closeDrawer(GravityCompat.START);
 
                 //get the activity index which was clicked in the navigation menu
-                ((MovieTabActivity) getActivity()).onDrawerItemClicked(position);
+                //((MovieTabActivity) getActivity()).onDrawerItemClicked(position);
+                //after introducing sectioned recycler view the gravatar is counted as a position
+                // so decrementing to match the correct fragment.
+                ((MovieTabActivity) getActivity()).onDrawerItemClicked(position-1);
             }
 
             @Override
