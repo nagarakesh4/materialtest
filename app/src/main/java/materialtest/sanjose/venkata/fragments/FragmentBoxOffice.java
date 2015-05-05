@@ -348,7 +348,7 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
     @Override
     public void onRefresh() {
         // will show swype for refresh
-        Logger.showToast(getActivity(), "Sorting list, Please wait..");
+        Logger.showToast(getActivity(), "Refreshing movie list, Please wait..");
         //usually a async task should be called and the post execute method should off the swipe
         //progress bar
         new Handler().postDelayed(new Runnable() {
