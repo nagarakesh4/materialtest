@@ -31,6 +31,8 @@ import static materialtest.sanjose.venkata.constants.ApplicationConstants.RTCons
 import materialtest.sanjose.venkata.fragments.FragmentBoxOffice;
 import materialtest.sanjose.venkata.fragments.FragmentSearch;
 import materialtest.sanjose.venkata.fragments.FragmentUpcoming;
+import materialtest.sanjose.venkata.fragments.MovieDrawerFragment;
+import materialtest.sanjose.venkata.fragments.NavigationDrawerFragment;
 import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.util.AnimationUtils;
@@ -48,7 +50,7 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_using_tab_library);
+        setContentView(R.layout.activity_movie_tab);
         toolbar = (Toolbar) findViewById(R.id.appBar);
 
         //telling to use my own action bar
@@ -58,6 +60,14 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         // display back button (arrow)
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        // implement the navigation drawer fragment in the mainactivity page
+        MovieDrawerFragment movieDrawerFragment = (MovieDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_movie_drawer);
+        //send tool bar, icon changes and everything from here
+        Logger.showLogInfo(String.valueOf(movieDrawerFragment));
+        movieDrawerFragment.setUp(R.id.fragment_movie_drawer, (android.support.v4.widget.DrawerLayout) findViewById(R.id.movieDrawerLayout), toolbar);
+
         tabHost = (MaterialTabHost) findViewById(R.id.materialTabHost);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
@@ -65,7 +75,7 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         //trying animation
         //AnimationUtils.animateToolbar(toolbar, tabHost);
 
-        ViewGroup mContainerToolbar = (ViewGroup) findViewById(R.id.container_app_bar);
+        ViewGroup mContainerToolbar = (ViewGroup) findViewById(R.id.movie_container_app_bar);
 
         AnimationUtils.animateToolbar(mContainerToolbar);
 
