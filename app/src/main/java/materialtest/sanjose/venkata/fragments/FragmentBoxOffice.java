@@ -140,7 +140,7 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
 
     private void sendJsonRequest() {
 
-        JsonObjectRequest boxOfficeRequest = new JsonObjectRequest(Request.Method.GET, getRequestUrl(40),
+        JsonObjectRequest boxOfficeRequest = new JsonObjectRequest(Request.Method.GET, getRequestUrl(50),
                 (String) null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
