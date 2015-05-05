@@ -310,10 +310,7 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
             moviesList = savedInstanceState.getParcelableArrayList(STATE_MOVIES);
             //set this on the adapter
             adapterBoxOffice.setMoviesList(moviesList);
-            //sample way to hide refresh progress
-            if(mSwipeRefreshLayout.isRefreshing()){
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
+
         }else {
             //call the json request when the activity is called for the first time
             sendJsonRequest();
@@ -358,5 +355,9 @@ public class FragmentBoxOffice extends Fragment implements SortListener, SwipeRe
                 adapterBoxOffice.setMoviesList(moviesList);
             }
         },4000);
+        //sample way to hide refresh progress
+        if(mSwipeRefreshLayout.isRefreshing()){
+            mSwipeRefreshLayout.setRefreshing(false);
+        }
     }
 }
