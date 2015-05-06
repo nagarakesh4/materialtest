@@ -1,6 +1,9 @@
 package materialtest.sanjose.venkata.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +13,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,9 +67,10 @@ public class MovieTabActivity extends ActionBarActivity implements MaterialTabLi
         getSupportActionBar().setHomeButtonEnabled(true);
         // display back button (arrow)
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_action_upcoming);
 
 
-        // implement the navigation drawer fragment in the mainactivity page
+       // implement the navigation drawer fragment in the mainactivity page
         MovieDrawerFragment movieDrawerFragment = (MovieDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_movie_drawer);
         //send tool bar, icon changes and everything from here
