@@ -43,7 +43,7 @@
             android:id="@+id/userGreeting"
             android:gravity="right"
             android:textColor="@android:color/white"
-            style="@style/TextAppearance.AppCompat.Large" />
+            style="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             android:textColor="@android:color/white"
             android:gravity="right"
             android:id="@+id/userName"
-            style="@style/TextAppearance.AppCompat.Medium" />
+            style="@style/TextAppearance.AppCompat.Large" />
 
         <View
             android:layout_width="match_parent"

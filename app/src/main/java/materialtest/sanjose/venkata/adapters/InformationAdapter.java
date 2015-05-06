@@ -137,7 +137,7 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     // this holder holds the items in the recycler view
     class ItemHolder extends RecyclerView.ViewHolder{
         //create assets variables
-        Typeface typeFaceTitle= Typeface.createFromAsset(context.getAssets(), "Lobster-Regular.ttf");
+        Typeface typeFaceSubtitle= Typeface.createFromAsset(context.getAssets(), "BreeSerif-Regular.ttf");
 
         TextView title;
         ImageView icon;
@@ -146,7 +146,7 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             title = (TextView) itemView.findViewById(R.id.listText);
             icon = (ImageView) itemView.findViewById(R.id.listIcon);
 
-            title.setTypeface(typeFaceTitle, Typeface.NORMAL);
+            title.setTypeface(typeFaceSubtitle, Typeface.NORMAL);
         }
     }
     //this holder holds the gravatar and the person details
@@ -166,9 +166,9 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             userEmail = (TextView) itemView.findViewById(R.id.userEmail);
             userGreeting = (TextView) itemView.findViewById(R.id.userGreeting);
 
-            userName.setTypeface(typeFaceTitle, Typeface.NORMAL);
+            userName.setTypeface(typeFaceSubtitle, Typeface.NORMAL);
             userEmail.setTypeface(typeFaceSubtitle, Typeface.NORMAL);
-            userGreeting.setTypeface(typeFaceTitle, Typeface.NORMAL);
+            userGreeting.setTypeface(typeFaceSubtitle, Typeface.NORMAL);
         }
     }
 }

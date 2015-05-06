@@ -4,7 +4,8 @@
     android:layout_height="48dp"
     android:background="@drawable/custom_bg"
     android:clickable="true"
-    android:layout_marginBottom="60dp">
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="20dp">
 <ImageView
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
@@ -22,5 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listText"
-        android:text="Hello World!"/>
+        android:text="Hello World!"
+        android:textSize="20dp" />
 </RelativeLayout>
