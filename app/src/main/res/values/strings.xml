@@ -16,9 +16,9 @@
     <string name="drawer_close">Close</string>
 
     <string-array name="movieDrawerTabs">
-        <item>Search Movies</item>
+        <item>Search</item>
         <item>Now Playing</item>
-        <item>UpComing Movies</item>
+        <item>Upcoming</item>
     </string-array>
 
     <string-array name="tabs">

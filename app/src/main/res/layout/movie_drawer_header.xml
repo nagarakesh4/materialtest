@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hello"
+            android:id="@+id/userGreeting"
             android:gravity="right"
             android:textColor="@android:color/white"
             style="@style/TextAppearance.AppCompat.Large" />
@@ -50,6 +51,7 @@
             android:text="Venkata"
             android:textColor="@android:color/white"
             android:gravity="right"
+            android:id="@+id/userName"
             style="@style/TextAppearance.AppCompat.Medium" />
 
         <View
@@ -61,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="nagarakesh4@gmail.com"
+            android:id="@+id/userEmail"
             android:textColor="@android:color/white"
             android:gravity="right"
             style="@style/TextAppearance.AppCompat.Small" />

@@ -1,6 +1,7 @@
 package materialtest.sanjose.venkata.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +39,8 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     List<Information> dataInformation = Collections.emptyList();
     private Context context;
 
-    public InformationAdapter(Context context, List<Information> dataInformation) {
+
+     public InformationAdapter(Context context, List<Information> dataInformation) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.dataInformation = dataInformation;
@@ -63,6 +65,8 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //get the xml file inflated
+
+
 
         //inflate the view depending on the view type - see getItemViewType
         // the view type will be obtained from the getitemviewtype
@@ -132,18 +136,39 @@ public class InformationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     /*we have to create our custom view holder for setting objects*/
     // this holder holds the items in the recycler view
     class ItemHolder extends RecyclerView.ViewHolder{
+        //create assets variables
+        Typeface typeFaceTitle= Typeface.createFromAsset(context.getAssets(), "Lobster-Regular.ttf");
+
         TextView title;
         ImageView icon;
         public ItemHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.listText);
             icon = (ImageView) itemView.findViewById(R.id.listIcon);
+
+            title.setTypeface(typeFaceTitle, Typeface.NORMAL);
         }
     }
     //this holder holds the gravatar and the person details
     class GravatarHolder extends RecyclerView.ViewHolder{
+        //create assets variables
+        Typeface typeFaceTitle= Typeface.createFromAsset(context.getAssets(), "Lobster-Regular.ttf");
+        Typeface typeFaceSubtitle= Typeface.createFromAsset(context.getAssets(), "BreeSerif-Regular.ttf");
+
+        TextView userName;
+        TextView userEmail;
+        TextView userGreeting;
         public GravatarHolder(View itemView) {
+
             super(itemView);
+
+            userName = (TextView) itemView.findViewById(R.id.userName);
+            userEmail = (TextView) itemView.findViewById(R.id.userEmail);
+            userGreeting = (TextView) itemView.findViewById(R.id.userGreeting);
+
+            userName.setTypeface(typeFaceTitle, Typeface.NORMAL);
+            userEmail.setTypeface(typeFaceSubtitle, Typeface.NORMAL);
+            userGreeting.setTypeface(typeFaceTitle, Typeface.NORMAL);
         }
     }
 }
