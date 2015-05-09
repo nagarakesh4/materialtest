@@ -43,4 +43,5 @@
     <string name="error_parse">Internal Server Error - Parsing failed</string>
     <string name="error_server">Internal Server Error, please try later</string>
     <string name="error_network">Connection could not be established - Network Error</string>
+    <string name="title_activity_movie_details">MovieDetails</string>
 </resources>

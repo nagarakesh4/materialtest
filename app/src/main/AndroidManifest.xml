@@ -3,6 +3,7 @@
     package="materialtest.sanjose.venkata.materialtest" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="materialtest.sanjose.venkata.instance.ApplicationInstance"
         android:allowBackup="true"
@@ -36,6 +37,10 @@
         <activity
             android:name="materialtest.sanjose.venkata.activities.MovieTabActivity"
             android:label="@string/title_activity_movie_tab" >
+        </activity>
+        <activity
+            android:name="materialtest.sanjose.venkata.activities.MovieDetails"
+            android:label="@string/title_activity_movie_details" >
         </activity>
     </application>
 
