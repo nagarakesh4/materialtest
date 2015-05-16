@@ -10,4 +10,8 @@
     <color name="divider">#B6B6B6</color>
     <color name="colorHighlight">#B6B6B6</color>
     <color name="favBlue">#00aed1</color>
+
+    <color name="lowRating">#ff0000</color>
+    <color name="highRating">#00cc00</color>
+    <color name="averageRating">#ffffff</color>
 </resources>

@@ -90,10 +90,29 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         }
 
         int audienceScore = currentMovie.getAudienceScore();
+
+        int high_score = context.getResources().getColor(R.color.highRating);
+        int low_score = context.getResources().getColor(R.color.lowRating);
+        int average_score = context.getResources().getColor(R.color.averageRating);
+        int color = 0;
+
         Logger.showLogInfo("audiencescore" + audienceScore);
         if (audienceScore != -1) {
             holder.movieAudienceScore.setRating(audienceScore / 20.0F);
             holder.movieAudienceScore.setAlpha(1.0F);
+
+            if(audienceScore/20.0F >3.3) {
+                color = high_score;
+            }else if(audienceScore/20.0F > 2.2 ) {
+                color = average_score;
+            }else {
+                color = low_score;
+            }
+            //change color of stars in ratings bar
+            LayerDrawable stars = (LayerDrawable) holder.movieAudienceScore.getProgressDrawable();
+
+            stars.getDrawable(2).setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
         } else {
             holder.movieAudienceScore.setRating(0.0F);
             holder.movieAudienceScore.setAlpha(0.5F);
@@ -151,10 +170,6 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
             movieThumbnail = (ImageView) itemView.findViewById(R.id.movieThumbnail);
             movieTitle = (TextView) itemView.findViewById(R.id.movieTitle);
             movieAudienceScore = (RatingBar) itemView.findViewById(R.id.movieAudienceScore);
-
-            //change color of stars in ratings bar
-            LayerDrawable stars = (LayerDrawable) movieAudienceScore.getProgressDrawable();
-            stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
             movieReleaseDate = (TextView) itemView.findViewById(R.id.movieReleaseDate);
         }
