@@ -1,6 +1,11 @@
 package materialtest.sanjose.venkata.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -146,6 +151,11 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
             movieThumbnail = (ImageView) itemView.findViewById(R.id.movieThumbnail);
             movieTitle = (TextView) itemView.findViewById(R.id.movieTitle);
             movieAudienceScore = (RatingBar) itemView.findViewById(R.id.movieAudienceScore);
+
+            //change color of stars in ratings bar
+            LayerDrawable stars = (LayerDrawable) movieAudienceScore.getProgressDrawable();
+            stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
             movieReleaseDate = (TextView) itemView.findViewById(R.id.movieReleaseDate);
         }
     }
