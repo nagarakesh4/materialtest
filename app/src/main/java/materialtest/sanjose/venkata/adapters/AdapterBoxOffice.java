@@ -6,12 +6,14 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -101,9 +103,9 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
             holder.movieAudienceScore.setRating(audienceScore / 20.0F);
             holder.movieAudienceScore.setAlpha(1.0F);
 
-            if(audienceScore/20.0F >3.3) {
+            if(audienceScore/20.0F >3.6) {
                 color = high_score;
-            }else if(audienceScore/20.0F > 2.2 ) {
+            }else if(audienceScore/20.0F > 2.75 ) {
                 color = average_score;
             }else {
                 color = low_score;
@@ -111,7 +113,10 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
             //change color of stars in ratings bar
             LayerDrawable stars = (LayerDrawable) holder.movieAudienceScore.getProgressDrawable();
 
-            stars.getDrawable(2).setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+            stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+            holder.mCardView.setCardBackgroundColor(color);
+
+            //holder.mRelativeLayout.setBackgroundColor(color);
 
         } else {
             holder.movieAudienceScore.setRating(0.0F);
@@ -162,11 +167,15 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         RatingBar movieAudienceScore;
         TextView movieReleaseDate;
 
+        RelativeLayout mRelativeLayout;
+        CardView mCardView;
         //the item view is instantiated by the layout inflater from
         // on onCreateViewHolder() and initialize all the objects in that layout here
         public ViewHolderBoxOffice(View itemView) {
             // the item view is used in the animation class
             super(itemView);
+            mCardView = (CardView) itemView.findViewById(R.id.card_view);
+            //mRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.row_id);
             movieThumbnail = (ImageView) itemView.findViewById(R.id.movieThumbnail);
             movieTitle = (TextView) itemView.findViewById(R.id.movieTitle);
             movieAudienceScore = (RatingBar) itemView.findViewById(R.id.movieAudienceScore);

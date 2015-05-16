@@ -8,7 +8,7 @@
     app:cardCornerRadius="10dp"
     android:layout_margin="5dp"
     app:cardBackgroundColor="#03A9F4"
-    >
+    android:id="@+id/card_view" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,8 @@
         android:layout_marginBottom="@dimen/size_byte"
         android:layout_marginLeft="@dimen/size_word"
         android:layout_marginRight="@dimen/size_word"
-        android:layout_marginTop="@dimen/size_byte">
+        android:layout_marginTop="@dimen/size_byte"
+        android:id="@+id/row_id">
         <!--tell how single item in movie should look like-->
         <ImageView
             android:id="@+id/movieThumbnail"
