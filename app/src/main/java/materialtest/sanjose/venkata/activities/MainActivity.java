@@ -19,6 +19,7 @@ import android.view.MenuItem;
 
 import materialtest.sanjose.venkata.fragments.MainActivityFragment;
 import materialtest.sanjose.venkata.fragments.NavigationDrawerFragment;
+import materialtest.sanjose.venkata.materialtest.PagerActivity;
 import materialtest.sanjose.venkata.materialtest.R;
 import materialtest.sanjose.venkata.util.AnimationUtils;
 import materialtest.sanjose.venkata.views.SlidingTabLayout;
@@ -104,6 +105,9 @@ public class MainActivity extends ActionBarActivity {
         }
         if(id == R.id.vectorTest) {
             startActivity(new Intent(this, VectorTestActivity.class));
+        }
+        if(id == R.id.materialPage){
+            startActivity(new Intent(this, PagerActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

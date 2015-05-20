@@ -1,13 +1,18 @@
 package materialtest.sanjose.venkata.adapters;
 
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import materialtest.sanjose.venkata.activities.MainActivity;
+import materialtest.sanjose.venkata.activities.MovieDetails;
 import materialtest.sanjose.venkata.constants.ApplicationConstants;
 import materialtest.sanjose.venkata.logging.Logger;
 import materialtest.sanjose.venkata.materialtest.R;
@@ -115,7 +122,6 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
 
             stars.getDrawable(2).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
             holder.mCardView.setCardBackgroundColor(color);
-
             //holder.mRelativeLayout.setBackgroundColor(color);
 
         } else {
@@ -129,7 +135,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         if(position > previousPosition){
             AnimationUtils.animateLibrary(holder);
         }else{
-            AnimationUtils.animateLibrary(holder);
+          //  AnimationUtils.animateLibrary(holder);
         }
         previousPosition = position;
 
@@ -159,7 +165,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         return moviesList.size();
     }
 
-    static class ViewHolderBoxOffice extends RecyclerView.ViewHolder {
+    class ViewHolderBoxOffice extends RecyclerView.ViewHolder {
         //create object of image view, text view and rating bar used in xml
 
         ImageView movieThumbnail;
@@ -171,7 +177,7 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         CardView mCardView;
         //the item view is instantiated by the layout inflater from
         // on onCreateViewHolder() and initialize all the objects in that layout here
-        public ViewHolderBoxOffice(View itemView) {
+        public ViewHolderBoxOffice(final View itemView) {
             // the item view is used in the animation class
             super(itemView);
             mCardView = (CardView) itemView.findViewById(R.id.card_view);
@@ -181,6 +187,32 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
             movieAudienceScore = (RatingBar) itemView.findViewById(R.id.movieAudienceScore);
 
             movieReleaseDate = (TextView) itemView.findViewById(R.id.movieReleaseDate);
-        }
+
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    Logger.showToast(context, getPosition() + 1 + "");
+                    context.startActivity(new Intent(context, MovieDetails.class));
+
+                }
+            });
+
+            /*itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, MainActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        ActivityOptionsCompat options = ActivityOptionsCompat
+                                .makeSceneTransitionAnimation((android.app.Activity) context, itemView, "reveal");
+                        context.startActivity(intent, options.toBundle());
+                    }else {
+                        Log.i("pLEASE UPGRADELATEST","");
+                    }
+                }
+            });*/
+                }
     }
 }

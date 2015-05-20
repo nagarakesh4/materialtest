@@ -4,83 +4,79 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
+import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
+import com.nineoldandroids.view.ViewHelper;
 
 import java.util.ArrayList;
 
 import materialtest.sanjose.venkata.materialtest.R;
 
 public class MovieDetails extends AppCompatActivity implements ObservableScrollViewCallbacks {
+    private View mImageView;
+    private View mToolbarView;
+    private ObservableScrollView mScrollView;
+    private int mParallaxImageHeight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+        setContentView(R.layout.movie_details);
 
-        ObservableListView listView = (ObservableListView) findViewById(R.id.list);
-        listView.setScrollViewCallbacks(this);
-
-        // Add these codes after ListView initialization
-        ArrayList<String> items = new ArrayList<String>();
-        for (int i = 1; i <= 100; i++) {
-            items.add("Item " + i);
-        }
-        listView.setAdapter(new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_1, items));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-    }
+        mImageView = findViewById(R.id.image);
+        mToolbarView = findViewById(R.id.toolbar);
+        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.highRating)));
 
+        mScrollView = (ObservableScrollView) findViewById(R.id.scroll);
+        mScrollView.setScrollViewCallbacks(this);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_movie_details, menu);
-        return true;
+        mParallaxImageHeight = getResources().getDimensionPixelSize(R.dimen.drawer_menu_width);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        onScrollChanged(mScrollView.getCurrentScrollY(), false, false);
     }
 
     @Override
-    public void onScrollChanged(int i, boolean b, boolean b2) {
-
+    public void onScrollChanged(int scrollY, boolean firstScroll, boolean dragging) {
+        int baseColor = getResources().getColor(R.color.primary);
+        float alpha = 1 - (float) Math.max(0, mParallaxImageHeight - scrollY) / mParallaxImageHeight;
+        mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor));
+        ViewHelper.setTranslationY(mImageView, scrollY / 2);
     }
 
     @Override
     public void onDownMotionEvent() {
-
     }
 
     @Override
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
-        ActionBar ab = getSupportActionBar();
+        /*ActionBar ab = getSupportActionBar();
         if (scrollState == ScrollState.UP) {
-            if (getSupportActionBar().isShowing()) {
-                getSupportActionBar().hide();
+            if (ab.isShowing()) {
+                ab.hide();
             }
         } else if (scrollState == ScrollState.DOWN) {
-            if (!getSupportActionBar().isShowing()) {
-                getSupportActionBar().show();
+            if (!ab.isShowing()) {
+                ab.show();
             }
-        }
+        }*/
     }
 }

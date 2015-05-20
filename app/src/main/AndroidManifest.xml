@@ -42,6 +42,14 @@
             android:name="materialtest.sanjose.venkata.activities.MovieDetails"
             android:label="@string/title_activity_movie_details" >
         </activity>
+        <activity
+            android:name="materialtest.sanjose.venkata.activities.MaterialPager"
+            android:label="@string/title_activity_material_pager" >
+        </activity>
+        <activity
+            android:name=".PagerActivity"
+            android:label="@string/title_activity_pager" >
+        </activity>
     </application>
 
 </manifest>

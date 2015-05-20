@@ -28,4 +28,9 @@
         android:orderInCategory="500"
         app:showAsAction="never"
         android:title="Vector Test Activity"/>
+    <item
+        android:id="@+id/materialPage"
+        android:orderInCategory="500"
+        app:showAsAction="never"
+        android:title="Material Page Demo"/>
 </menu>

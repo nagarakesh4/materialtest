@@ -70,7 +70,7 @@ public class AnimationUtils {
     }
 
     public static void animateLibrary(RecyclerView.ViewHolder holder) {
-        YoYo.with(Techniques.ZoomInDown).duration(1000).playOn(holder.itemView);
+        YoYo.with(Techniques.BounceInUp).duration(1000).playOn(holder.itemView);
     }
 
 
