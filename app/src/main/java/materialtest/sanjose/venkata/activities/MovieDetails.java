@@ -1,5 +1,8 @@
 package materialtest.sanjose.venkata.activities;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
@@ -19,8 +23,12 @@ import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.nineoldandroids.view.ViewHelper;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import materialtest.sanjose.venkata.adapters.AdapterBoxOffice;
@@ -84,10 +92,13 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
         }
         String imageNewURL = "http://content6.flixster.com" + imagePath;
         Log.i("is this what??", imageNewURL);
+
         Picasso.with(this).load(imageNewURL).
-                placeholder(R.drawable.ic_movie_poster).
-                into((android.widget.ImageView) mImageView);
+                placeholder(R.drawable.ic_movie_poster)//.resize(200, 200)
+                .into((android.widget.ImageView) mImageView);
     }
+
+
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {

@@ -134,11 +134,11 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
         //holder.movieAudienceScore.setRating(currentMovie.getAudienceScore() / 20.0F);
 
         //if we are scrolling down true
-        if(position > previousPosition){
+        /*if(position > previousPosition){
             AnimationUtils.animateLibraryDown(holder);
         }else{
             AnimationUtils.animateLibraryUp(holder);
-        }
+        }*/
         previousPosition = position;
 
         String urlThumbNail = currentMovie.getUrlThumbnail();

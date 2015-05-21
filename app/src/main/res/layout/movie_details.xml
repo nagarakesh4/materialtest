@@ -18,8 +18,8 @@
                 android:id="@+id/selectedMovieImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_movie_poster" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/ic_movie_poster" />
 
             <TextView
                 android:id="@+id/body"
