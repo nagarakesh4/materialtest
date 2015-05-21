@@ -69,10 +69,13 @@ public class AnimationUtils {
         animatorTranslateY.start();
     }
 
-    public static void animateLibrary(RecyclerView.ViewHolder holder) {
+    public static void animateLibraryDown(RecyclerView.ViewHolder holder) {
         YoYo.with(Techniques.BounceInUp).duration(1000).playOn(holder.itemView);
     }
 
+    public static void animateLibraryUp(RecyclerView.ViewHolder holder) {
+        YoYo.with(Techniques.BounceInDown).duration(1000).playOn(holder.itemView);
+    }
 
 
     public static void animateToolbar(View containerToolBar) {

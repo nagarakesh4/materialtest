@@ -79,4 +79,6 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
             }
         }*/
     }
+
+
 }

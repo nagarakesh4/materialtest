@@ -5,7 +5,8 @@
     app:cardElevation="30dp"
     app:cardUseCompatPadding="false"
     app:cardPreventCornerOverlap="false"
-    app:cardCornerRadius="2dp"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="20dp"
     app:cardBackgroundColor="#03A9F4"
     android:id="@+id/card_view"
     android:foreground="?android:attr/selectableItemBackground">

@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -133,9 +135,9 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
 
         //if we are scrolling down true
         if(position > previousPosition){
-            AnimationUtils.animateLibrary(holder);
+            AnimationUtils.animateLibraryDown(holder);
         }else{
-          //  AnimationUtils.animateLibrary(holder);
+            AnimationUtils.animateLibraryUp(holder);
         }
         previousPosition = position;
 
@@ -194,6 +196,9 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
                 @Override
                 public void onClick(View v) {
                     Logger.showToast(context, getPosition() + 1 + "");
+
+                    YoYo.with(Techniques.FadeInDown).duration(1000).playOn(itemView);
+
                     context.startActivity(new Intent(context, MovieDetails.class));
 
                 }

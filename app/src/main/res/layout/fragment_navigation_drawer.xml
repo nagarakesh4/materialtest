@@ -24,7 +24,7 @@
                 android:layout_height="140dp"
                 android:layout_marginBottom="24dp"
                 android:layout_marginTop="@dimen/drawer_margin_top"
-                android:src="@drawable/ic_abstract" />
+                android:src="@drawable/ic_launcher" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
