@@ -43,6 +43,8 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
     private ObservableScrollView mScrollView;
     private int mParallaxImageHeight;
 
+    private Movie movieDetails;
+
     private TextView mTextView;
 
     @Override
@@ -64,7 +66,7 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
 
         mParallaxImageHeight = getResources().getDimensionPixelSize(R.dimen.drawer_menu_width);
 
-        Movie movieDetails =
+        movieDetails =
                 getIntent().getParcelableExtra("movieDetails");
 
         //setTitle(movieDetails.getMovieName());
@@ -111,6 +113,15 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
         int baseColor = getResources().getColor(R.color.primary);
         float alpha = 1 - (float) Math.max(0, mParallaxImageHeight - scrollY) / mParallaxImageHeight;
         mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(alpha, baseColor));
+        Logger.showLogInfo(String.valueOf(alpha));
+        if(alpha<0.5){
+            setTitle("");
+            mTextView.setText(movieDetails.getMovieName());
+        }else{
+            setTitle(movieDetails.getMovieName());
+            Logger.showLogInfo(String.valueOf(movieDetails.getMovieName()));
+            mTextView.setText("");
+        }
         ViewHelper.setTranslationY(mImageView, scrollY / 2);
     }
 
