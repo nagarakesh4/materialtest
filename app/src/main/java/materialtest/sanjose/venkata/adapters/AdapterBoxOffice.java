@@ -196,10 +196,15 @@ public class AdapterBoxOffice extends RecyclerView.Adapter<AdapterBoxOffice.View
                 @Override
                 public void onClick(View v) {
                     Logger.showToast(context, getPosition() + 1 + "");
-
-                    YoYo.with(Techniques.FadeInDown).duration(1000).playOn(itemView);
-
-                    context.startActivity(new Intent(context, MovieDetails.class));
+                    Integer taggedPosition = (Integer) v.getTag();
+                    Logger.showLogInfo("helloWorld");
+                    Logger.showLogInfo(String.valueOf(moviesList.get(getAdapterPosition())));
+                    //YoYo.with(Techniques.FadeInDown).duration(1000).playOn(itemView);
+                    Intent i = new Intent(context, MovieDetails.class);
+                    i.putExtra("movieDetails", moviesList.get(getAdapterPosition()));
+                    v.getContext().startActivity(i);
+                    //context.startActivity(i);
+                    //context.startActivity(new Intent(context, MovieDetails.class));
 
                 }
             });
