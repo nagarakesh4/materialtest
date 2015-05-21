@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
@@ -42,6 +43,7 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
     private ObservableScrollView mScrollView;
     private int mParallaxImageHeight;
 
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        mTextView = (TextView) findViewById(R.id.titleMovie);
         mImageView = findViewById(R.id.selectedMovieImage);
         mToolbarView = findViewById(R.id.toolbar);
         mToolbarView.setBackgroundColor(ScrollUtils.getColorWithAlpha(0, getResources().getColor(R.color.highRating)));
@@ -65,13 +67,10 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
         Movie movieDetails =
                 getIntent().getParcelableExtra("movieDetails");
 
-        setTitle(movieDetails.getMovieName());
-
-        Logger.showLogInfo("displaying the url thumbnail");
-        Logger.showLogInfo(movieDetails.getUrlThumbnail());
+        //setTitle(movieDetails.getMovieName());
+        setTitle("");
 
         String[] posterUrl = movieDetails.getUrlThumbnail().split("/");
-        Log.i("posterUrl", String.valueOf(posterUrl.length));
         URI uri = null;
         try {
             uri = new URI(movieDetails.getUrlThumbnail());
@@ -93,6 +92,7 @@ public class MovieDetails extends AppCompatActivity implements ObservableScrollV
         String imageNewURL = "http://content6.flixster.com" + imagePath;
         Log.i("is this what??", imageNewURL);
 
+        mTextView.setText(movieDetails.getMovieName());
         Picasso.with(this).load(imageNewURL).
                 placeholder(R.drawable.ic_movie_poster)//.resize(200, 200)
                 .into((android.widget.ImageView) mImageView);
